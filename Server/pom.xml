@@ -8,12 +8,12 @@
     <artifactId>r2d2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- setting java version-->
+    <!-- setting java version -->
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
-    <!-- spring boot-->
+    <!-- spring boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,18 +22,19 @@
 
     <dependencies>
 
-        <!-- spring boot -->
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Data JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- h2 memory DB-->
+        <!-- H2 memory DB -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -45,46 +46,49 @@
         <!--<artifactId>mysql-connector-java</artifactId>-->
         <!--</dependency>-->
 
-
-        <!-- lombok -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.6</version>
         </dependency>
 
-
-        <!-- junit, mockMvc-->
+        <!-- Junit, mockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
-        <!-- model mapper -->
+        <!-- Model mapper -->
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
             <version>0.7.5</version>
         </dependency>
 
-        <!-- jsoup -->
+        <!-- Jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.8.3</version>
         </dependency>
 
-        <!-- gcm-->
+        <!-- Gcm -->
         <dependency>
             <groupId>com.ganyo</groupId>
             <artifactId>gcm-server</artifactId>
             <version>1.0.2</version>
         </dependency>
 
+        <!-- Json PATH -->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+
     </dependencies>
 
-
-    <!-- build-->
+    <!-- Plugins-->
     <build>
         <plugins>
             <plugin>
