@@ -19,5 +19,4 @@ public interface UserAPI {
     Call<UserDto.Response> createUser(@Body UserDto.Create createUser);
 
 
-
 }

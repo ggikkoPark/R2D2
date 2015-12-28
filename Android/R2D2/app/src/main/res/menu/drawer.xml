@@ -4,16 +4,24 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/name0"
-            android:title="@string/r2d2"/>
+            android:id="@+id/home"
+            android:title="@string/navi_menu_home"/>
 
         <item
-            android:id="@+id/name1"
-            android:title="@string/parkjihong"/>
+            android:id="@+id/map"
+            android:title="@string/navi_menu_map"/>
 
         <item
-            android:id="@+id/name2"
-            android:title="@string/anjungil"/>
+            android:id="@+id/around"
+            android:title="@string/navi_menu_around"/>
+
+        <item
+            android:id="@+id/push"
+            android:title="@string/navi_menu_pushsetting"/>
+
+        <item
+            android:id="@+id/help"
+            android:title="@string/navi_menu_help"/>
 
 
     </group>

@@ -49,5 +49,4 @@ dependencies {
 
     //lombok
     compile 'org.projectlombok:lombok:1.16.6'
-
 }

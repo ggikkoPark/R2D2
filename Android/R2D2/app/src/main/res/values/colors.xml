@@ -2,8 +2,15 @@
 <resources>
     <color name="colorPrimary">#23b400</color>
     <color name="colorPrimaryDark">#23b400</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#23b400</color>
 
-    <color name="main">#23b400</color>
+    <!-- 기본 색깔 -->
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <!-- 주 사용되는 색깔 -->
+    <color name="main">#23b400</color>
+    <color name="main_toolbar">#23b400</color>
+    <color name="main_toolbar_white">#ffffff</color>
+
 </resources>

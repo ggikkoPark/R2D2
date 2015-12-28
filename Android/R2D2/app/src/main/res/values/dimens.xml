@@ -3,4 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="around_edittext_margin">5dp</dimen>
+
+
+    <!-- 로그인 부분 -->
+    <dimen name="textsize_logon_button">30sp</dimen>
+    <dimen name="textsize_logon_join">10sp</dimen>
+
+    <!-- 회원가입 부분 -->
+
+    <!-- 리스트 부분-->
+
 </resources>

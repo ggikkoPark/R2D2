@@ -3,4 +3,15 @@
     <string name="r2d2">R2D2</string>
     <string name="parkjihong">박지홍</string>
     <string name="anjungil">안준길</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homeactivity">실시간 랭킹</string>
+
+    <string name="navi_menu_home">홈으로</string>
+    <string name="navi_menu_map">지도</string>
+    <string name="navi_menu_around">내 주변 맛집 추가</string>
+    <string name="navi_menu_pushsetting">푸쉬 설정</string>
+    <string name="navi_menu_help">문의하기</string>
+
 </resources>

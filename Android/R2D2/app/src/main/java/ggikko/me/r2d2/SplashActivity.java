@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import ggikko.me.r2d2.home.HomeActivity;
+import ggikko.me.r2d2.user.LoginActivity;
 
 /**
  * 처음 애플리케이션 진입점
@@ -47,9 +48,9 @@ public class SplashActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
-
+                finish();
             }
         });
 

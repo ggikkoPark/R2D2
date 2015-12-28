@@ -16,6 +16,7 @@
         android:layout_margin="16dp"
         android:elevation="4dp"
         android:src="@drawable/naverlogo"
+        android:visibility="gone"
         tools:src="@drawable/naverlogo"/>
 
     <TextView
@@ -24,8 +25,9 @@
         android:layout_above="@+id/email"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="ggikko"
+        android:text="강남역"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
@@ -34,7 +36,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Hello D2!"
+        android:text="github.com/ggikkoPark"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </RelativeLayout>
