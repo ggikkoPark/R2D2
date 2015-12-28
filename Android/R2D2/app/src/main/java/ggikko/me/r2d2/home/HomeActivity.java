@@ -1,8 +1,6 @@
 package ggikko.me.r2d2.home;
 
 
-//This is base activity when application starts
-
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +13,9 @@ import android.view.MenuItem;
 
 import ggikko.me.r2d2.R;
 
+/**
+ * 로그인 후 첫 홈 화면 Activity
+ */
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ggikko.me.r2d2.around.AroundActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- 1, 2번 내 주변 맛집 추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_first"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="1."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+        <EditText
+            android:id="@+id/edit_second"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="2."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+    </LinearLayout>
+
+    <!-- 3, 4번 내 주변 맛집 추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_third"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="3."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+        <EditText
+            android:id="@+id/edit_fourth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="4."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+    </LinearLayout>
+
+    <!-- 5, 6번 내 주변 맛집 추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_fifth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="5."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+        <EditText
+            android:id="@+id/edit_sixth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="6."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+    </LinearLayout>
+
+    <!-- 7, 8번 내 주변 맛집 추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_seventh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="7."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+        <EditText
+            android:id="@+id/edit_ninth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="8."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+    </LinearLayout>
+
+    <!-- 9, 10번 내 주변 맛집 추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_nineth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="9."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+        <EditText
+            android:id="@+id/edit_tenth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="10."
+            android:layout_margin="@dimen/around_edittext_margin"/>
+
+    </LinearLayout>
+
+    <!-- 변경하기 버튼 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="변경하기"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
