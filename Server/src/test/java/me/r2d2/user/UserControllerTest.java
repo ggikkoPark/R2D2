@@ -1,6 +1,5 @@
 package me.r2d2.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.TestCase;
 import me.r2d2.Application;
@@ -64,7 +63,7 @@ public class UserControllerTest extends TestCase {
         UserDto.Create createDto = new UserDto.Create();
         createDto.setEmail("ggikko@gmail.com");
         createDto.setPassword("12345");
-        createDto.setLocalNumber("1");
+        createDto.setSubwayNumber("1");
 
         ResultActions result = mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -73,7 +72,7 @@ public class UserControllerTest extends TestCase {
         result.andDo(print());
         result.andExpect(status().isCreated());
         result.andExpect(jsonPath("$.email", is("ggikko@gmail.com")));
-        result.andExpect(jsonPath("$.localNumber", is("1")));
+        result.andExpect(jsonPath("$.subwayNumber", is("1")));
 
         result = mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +93,7 @@ public class UserControllerTest extends TestCase {
         UserDto.Create createDto = new UserDto.Create();
         createDto.setEmail("ggikko@gmail.com");
         createDto.setPassword(" ");
-        createDto.setLocalNumber("1");
+        createDto.setSubwayNumber("1");
 
         ResultActions result = mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -105,6 +104,4 @@ public class UserControllerTest extends TestCase {
         result.andExpect(jsonPath("$.code", is("bad.request")));
 
     }
-
-
 }

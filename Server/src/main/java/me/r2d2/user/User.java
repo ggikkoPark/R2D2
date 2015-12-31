@@ -32,9 +32,9 @@ public class User {
     private String deviceId;
 
     /** 지역 번호
-     * 각 지역마다 임의로 지정된 번호
+     * 각 지하철 역마다 임의로 지정된 번호
      * */
-    private String localNumber;
+    private String subwayNumber;
 
     /** 카테고리
      * 사용자가 선택할 수 있는 범주

@@ -17,4 +17,5 @@ public class UserDuplicatedException extends RuntimeException {
     public UserDuplicatedException(String email) {
         this.email = email;
     }
+
 }

@@ -26,7 +26,7 @@ public class UserDto {
         private String password;
 
         @NotBlank
-        private String localNumber;
+        private String subwayNumber;
 
     }
 
@@ -34,7 +34,7 @@ public class UserDto {
     public static class Response{
 
         private String email;
-        private String localNumber;
+        private String subwayNumber;
 
     }
 }

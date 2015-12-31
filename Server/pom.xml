@@ -42,8 +42,8 @@
 
         <!-- mysql 잠시 보류, 부피 커질떄까지 h2 memory DB 사용 -->
         <!--<dependency>-->
-        <!--<groupId>mysql</groupId>-->
-        <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
         <!--</dependency>-->
 
         <!-- Lombok -->
