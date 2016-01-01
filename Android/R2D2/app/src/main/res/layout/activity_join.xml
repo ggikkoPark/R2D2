@@ -1,12 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ggikko.me.r2d2.user.JoinActivity">
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ggikko.me.r2d2.user.LoginActivity">
 
-</RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mToolbar_join"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main_toolbar_white"
+        android:subtitleTextColor="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:subtitleTextColor="@color/white"
+        app:titleTextColor="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_toolbar"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="R2D2"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/edit_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_join_background"
+            android:hint="이메일"/>
+
+
+        <EditText
+            android:id="@+id/edit_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_join_background"
+            android:hint="비밀번호"/>
+
+
+        <EditText
+            android:id="@+id/edit_input_password_check"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_join_background"
+            android:hint="비밀번호"/>
+
+        <EditText
+            android:id="@+id/edit_select_subway"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:background="@drawable/edit_join_background"
+            android:hint="역 선택"/>
+
+
+        <Button
+            android:id="@+id/btn_join"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/main"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="@dimen/textsize_logon_button"
+            android:text="가입하기"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

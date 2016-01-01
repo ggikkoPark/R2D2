@@ -9,8 +9,14 @@
     <dimen name="textsize_logon_button">30sp</dimen>
     <dimen name="textsize_logon_join">10sp</dimen>
 
+
     <!-- 회원가입 부분 -->
 
     <!-- 리스트 부분-->
+
+    <!-- 역 설정 -->
+    <dimen name="standard_padding">8dp</dimen>
+    <dimen name="arrow_size">32dp</dimen>
+    <dimen name="standard_padding_small">4dp</dimen>
 
 </resources>

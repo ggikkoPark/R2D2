@@ -12,5 +12,12 @@
     <color name="main">#23b400</color>
     <color name="main_toolbar">#23b400</color>
     <color name="main_toolbar_white">#ffffff</color>
+    <color name="lightGray">#e0e0e0</color>
+
+    <!-- join activity 사용되는 색깔 -->
+    <color name="edit_join_border">#dfdfdf</color>
+
+
 
 </resources>
+
