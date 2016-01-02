@@ -1,6 +1,7 @@
 package ggikko.me.r2d2.user;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.home.HomeActivity;
@@ -18,19 +20,20 @@ import ggikko.me.r2d2.home.HomeActivity;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    TextView txt_login_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar_login);
-        setSupportActionBar(toolbar);
-
-        // 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다.
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar_login);
+//        setSupportActionBar(toolbar);
+//
+//        // 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다.
+//        final ActionBar actionBar = getSupportActionBar();
+//        actionBar.setHomeButtonEnabled(true);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Button btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {

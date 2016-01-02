@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/mToolbar_login"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/main_toolbar_white"
-        android:subtitleTextColor="@color/white"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:subtitleTextColor="@color/white"
-        app:titleTextColor="@color/white">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_toolbar"
-            android:textSize="20sp"
-            android:layout_gravity="center"
-            android:textColor="@color/white" />
-
-
-    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:gravity="center"
+        android:layout_margin="@dimen/login_entire_margin"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txt_login_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:textSize="30sp"
+            android:textSize="60sp"
+            android:textColor="@color/main"
+            android:textStyle="bold"
             android:text="R2D2"/>
 
         <View
@@ -56,7 +39,7 @@
             android:id="@+id/edit_input_email"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:background="@drawable/edit_login_background"
@@ -67,7 +50,7 @@
             android:id="@+id/edit_input_password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:background="@drawable/edit_login_background"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="ggikko.me.r2d2.map.MapActivity">
+
+    <!-- toolbar layout -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mToolbar_map"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main"
+        android:subtitleTextColor="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:subtitleTextColor="@color/white"
+        app:titleTextColor="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_toolbar"
+            android:textSize="20sp"
+            android:text="맛집 지도"
+            android:layout_gravity="center"
+            android:textColor="@color/white" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <fragment
+        android:id="@+id/mapfragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="ggikko.me.r2d2.map.MapFragment"
+        tools:layout="@layout/fragment_map" />
+
+
+
+
+
+</LinearLayout>

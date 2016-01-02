@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
 
-
+    <!-- toolbar layout -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/mToolbar_join"
         android:layout_width="match_parent"
@@ -35,8 +35,8 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/join_margin_left"
+        android:layout_marginRight="@dimen/join_margin_right"
         android:orientation="vertical">
 
         <TextView

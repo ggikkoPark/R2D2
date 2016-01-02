@@ -2,27 +2,68 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ggikko.me.r2d2">
 
+    <!--<permission android:name="ggikko.me.r2d2.permission.MAPS_RECEIVE" />-->
+
+    <uses-permission android:name="ggikko.me.r2d2.locationapi.maps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".Application"
         android:theme="@style/AppTheme">
+
+        <!-- 홈 activity -->
         <activity
             android:name=".home.HomeActivity"
             android:label="@string/homeactivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 처음 애니메이션 화면 activity -->
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".user.LoginActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".user.JoinActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".around.AroundActivity" />
-        <activity android:name=".subway.SubwayActivty"></activity>
+
+        <!-- 로그인 activity -->
+        <activity
+            android:name=".user.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 회원가입 activity -->
+        <activity
+            android:name=".user.JoinActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 내 주변 맛집 activity -->
+        <activity
+            android:name=".around.AroundActivity"
+            android:label="@string/empty"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 지하철 선택 activity -->
+        <activity android:name=".subway.SubwayActivty"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 지하철 선택 activity -->
+        <activity android:name=".map.MapActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 구글맵 API KEY -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/googlemap_apikey" />
+
+
     </application>
 
 </manifest>

@@ -2,21 +2,26 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="around_edittext_margin">5dp</dimen>
+    <dimen name="around_edittext_margin">10dp</dimen>
 
 
     <!-- 로그인 부분 -->
     <dimen name="textsize_logon_button">30sp</dimen>
     <dimen name="textsize_logon_join">10sp</dimen>
-
+    <dimen name="login_entire_margin">20dp</dimen>
 
     <!-- 회원가입 부분 -->
+    <dimen name="join_margin_left">20dp</dimen>
+    <dimen name="join_margin_right">20dp</dimen>
 
     <!-- 리스트 부분-->
 
-    <!-- 역 설정 -->
+    <!-- 역 설정 부분-->
     <dimen name="standard_padding">8dp</dimen>
     <dimen name="arrow_size">32dp</dimen>
     <dimen name="standard_padding_small">4dp</dimen>
+
+    <!-- 내 주변 맛집 설정 부분 -->
+    <dimen name="edit_around_padding">5dp</dimen>
 
 </resources>

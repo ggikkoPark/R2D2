@@ -23,6 +23,7 @@ import java.util.List;
 
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.around.AroundActivity;
+import ggikko.me.r2d2.map.MapActivity;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.ResultCodeCollections;
 
@@ -158,6 +159,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.map:
+
+                        Intent intent_map = new Intent(HomeActivity.this, MapActivity.class);
+                        startActivity(intent_map);
 
                         break;
 
