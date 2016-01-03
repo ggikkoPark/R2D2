@@ -6,13 +6,26 @@
 
 
     <!-- 로그인 부분 -->
-    <dimen name="textsize_logon_button">30sp</dimen>
-    <dimen name="textsize_logon_join">10sp</dimen>
+    <dimen name="textsize_logon_button">20sp</dimen>
+    <dimen name="textsize_logon_join">15sp</dimen>
     <dimen name="login_entire_margin">20dp</dimen>
 
+    <dimen name="edit_bottomright_radius">5dp</dimen>
+    <dimen name="edit_bottomleft_radius">5dp</dimen>
+    <dimen name="edit_topleft_radius">5dp</dimen>
+    <dimen name="edit_topright_radius">5dp</dimen>
+
+    <dimen name="edit_logon_size">15sp</dimen>
+
+
+
     <!-- 회원가입 부분 -->
-    <dimen name="join_margin_left">20dp</dimen>
-    <dimen name="join_margin_right">20dp</dimen>
+    <dimen name="join_margin_left">30dp</dimen>
+    <dimen name="join_margin_right">30dp</dimen>
+    <dimen name="edit_join_size">15sp</dimen>
+    <dimen name="edit_join_padding">10dp</dimen>
+
+
 
     <!-- 리스트 부분-->
 
@@ -24,4 +37,19 @@
     <!-- 내 주변 맛집 설정 부분 -->
     <dimen name="edit_around_padding">5dp</dimen>
 
+    <!-- spinner -->
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+
+    <!-- 푸쉬 셋팅 부분 -->
+    <dimen name="main_cardview_top">15dp</dimen>
+    <dimen name="main_cardview_bottom">15dp</dimen>
+    <dimen name="main_cardview_right">30dp</dimen>
+    <dimen name="main_cardview_left">30dp</dimen>
+
+    <dimen name="txt_push_title">18sp</dimen>
+    <dimen name="txt_push_subtitle">12sp</dimen>
+    <dimen name="txt_spinner_size">20sp</dimen>
+    <dimen name="cardview_push_radius">5dp</dimen>
+    <dimen name="txt_join_size">10sp</dimen>
 </resources>

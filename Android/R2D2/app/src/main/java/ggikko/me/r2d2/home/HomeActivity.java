@@ -24,6 +24,7 @@ import java.util.List;
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.around.AroundActivity;
 import ggikko.me.r2d2.map.MapActivity;
+import ggikko.me.r2d2.push.PushSettingActivity;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.ResultCodeCollections;
 
@@ -173,6 +174,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.push:
+
+                        Intent intent_push = new Intent(HomeActivity.this, PushSettingActivity.class);
+                        startActivity(intent_push);
 
                         break;
 

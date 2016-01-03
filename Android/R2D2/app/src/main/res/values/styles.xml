@@ -7,10 +7,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 기본 NoactionBar 배경 -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:typeface">monospace</item>
+    </style>
+
+    <!-- 기본 NoactionBar + 하얀 배경 -->
+    <style name="AppTheme.NoActionBarWhite">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <!-- 팝업 & AppBar 테마 -->

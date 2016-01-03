@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="내 주변 맛집 설정"
+            android:text="주변 맛집 설정"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -49,9 +49,13 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="1."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"
+            />
 
         <EditText
             android:id="@+id/edit_second"
@@ -59,9 +63,12 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="2."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9" />
 
     </LinearLayout>
 
@@ -79,9 +86,12 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="3."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9" />
 
         <EditText
             android:id="@+id/edit_fourth"
@@ -89,9 +99,12 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="4."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"/>
 
     </LinearLayout>
 
@@ -109,9 +122,12 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="5."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9" />
 
         <EditText
             android:id="@+id/edit_sixth"
@@ -119,9 +135,12 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="6."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"/>
 
     </LinearLayout>
 
@@ -139,19 +158,25 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="7."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9" />
 
         <EditText
             android:id="@+id/edit_ninth"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
+            android:textColorHint="@color/edit_hint_color"
             android:layout_weight="1"
             android:background="@drawable/edit_around_background"
             android:hint="8."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"/>
 
     </LinearLayout>
 
@@ -169,24 +194,34 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="9."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"/>
 
         <EditText
             android:id="@+id/edit_tenth"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
+            android:textColorHint="@color/edit_hint_color"
             android:layout_weight="1"
             android:background="@drawable/edit_around_background"
             android:hint="10."
-            android:padding="@dimen/edit_around_padding" />
+            android:padding="@dimen/edit_around_padding"
+            android:singleLine="true"
+            android:maxLength="9"/>
 
     </LinearLayout>
 
-    <!-- 변경하기 버튼 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
 
+    <!-- 변경하기 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -209,6 +244,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="0.5" />
+
 
 </LinearLayout>

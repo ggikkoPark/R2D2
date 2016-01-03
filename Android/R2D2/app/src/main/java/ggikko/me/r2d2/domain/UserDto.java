@@ -1,6 +1,9 @@
 package ggikko.me.r2d2.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by ggikko on 15. 12. 28..
@@ -11,7 +14,9 @@ import lombok.Data;
  */
 public class UserDto {
 
-    @Data
+    @Getter
+    @Setter
+    @AllArgsConstructor
     public static class Create {
 
         private String email;
@@ -21,12 +26,16 @@ public class UserDto {
     }
 
 
-    @Data
-    public static class Response{
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class JoinResponse{
 
         private String email;
-        private String subwayNumber;
+        private String subwaynumber;
         private String token;
+        private String status;
+        private String message;
 
     }
 

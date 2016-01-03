@@ -1,11 +1,13 @@
 package ggikko.me.r2d2;
 
+import android.support.multidex.MultiDexApplication;
+
 import ggikko.me.r2d2.util.FontOverride;
 
 /**
  * Created by ggikko on 16. 1. 2..
  */
-public class Application extends android.app.Application {
+public class Application extends MultiDexApplication {
 
     @Override
     public void onCreate() {

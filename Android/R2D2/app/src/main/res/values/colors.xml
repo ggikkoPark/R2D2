@@ -7,6 +7,9 @@
     <!-- 기본 색깔 -->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="red">#B71C1C</color>
+    <color name="silver">#dfdfdf</color>
+
 
     <!-- 주 사용되는 색깔 -->
     <color name="main">#23b400</color>
@@ -17,6 +20,8 @@
     <!-- join activity 사용되는 색깔 -->
     <color name="edit_join_border">#dfdfdf</color>
 
+    <!-- around activity 사용되는 색깔 -->
+    <color name="edit_hint_color">#dfdfdf</color>
 
 
 </resources>

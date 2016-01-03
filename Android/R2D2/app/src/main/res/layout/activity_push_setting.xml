@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="ggikko.me.r2d2.push.PushSettingActivity">
+
+    <!-- toolbar layout -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mToolbar_push"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main"
+        android:subtitleTextColor="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:subtitleTextColor="@color/white"
+        app:titleTextColor="@color/white">
+
+        <TextView
+            android:id="@+id/text_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="푸쉬 설정"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/main_cardview_bottom"
+            android:layout_marginLeft="@dimen/main_cardview_left"
+            android:layout_marginRight="@dimen/main_cardview_right"
+            android:layout_marginTop="@dimen/main_cardview_top"
+            android:layout_weight="3"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="@dimen/cardview_push_radius"
+            card_view:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <!-- 첫번째 시간설정 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="시간 설정"
+                        android:textSize="@dimen/txt_push_title"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="매일 푸쉬 받을 시간을 설정합니다"
+                        android:textColor="@color/silver"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/txt_push_subtitle"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ggikko.me.r2d2.spinner.NiceSpinner
+                        android:id="@+id/nice_spinner_hour"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/txt_spinner_size"
+                        android:text="h" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:textSize="@dimen/txt_spinner_size"
+                        android:text="시" />
+
+                    <ggikko.me.r2d2.spinner.NiceSpinner
+                        android:id="@+id/nice_spinner_minutes"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/txt_spinner_size"
+                        android:text="m" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:textSize="@dimen/txt_spinner_size"
+                        android:text="분" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/main_cardview_bottom"
+            android:layout_marginLeft="@dimen/main_cardview_left"
+            android:layout_marginRight="@dimen/main_cardview_right"
+            android:layout_weight="3"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="@dimen/cardview_push_radius"
+            card_view:cardElevation="5dp">
+
+            <!-- 역 정보 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="역 설정"
+                        android:textSize="@dimen/txt_push_title"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="푸쉬 메세지를 받을 역을 설정합니다"
+                        android:textColor="@color/silver"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/txt_push_subtitle"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- 역 선택 스피너 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ggikko.me.r2d2.spinner.NiceSpinner
+                        android:id="@+id/nice_spinner_subway"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+
+                        android:textSize="@dimen/txt_spinner_size"
+                        android:text="정자역" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- 버전 정보 -->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/main_cardview_bottom"
+            android:layout_marginLeft="@dimen/main_cardview_left"
+            android:layout_marginRight="@dimen/main_cardview_right"
+            android:layout_weight="2"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="@dimen/cardview_push_radius"
+            card_view:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="버전정보"
+                        android:textSize="@dimen/txt_push_title"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="10sp"
+                        android:text="v 1.1.0"
+                        android:textSize="@dimen/txt_push_subtitle"
+                        android:textColor="@color/silver" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="on/off" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

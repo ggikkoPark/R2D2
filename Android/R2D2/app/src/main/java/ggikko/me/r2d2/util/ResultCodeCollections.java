@@ -6,5 +6,7 @@ package ggikko.me.r2d2.util;
 public class ResultCodeCollections {
 
     public static int RESULTCODE_HOMEACTIVITY_SUBWAY = 0;
+    public static int RESULTCODE_JOINACTIVITY_SUBWAY = 0;
+
 
 }

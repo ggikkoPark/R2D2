@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ggikko.me.r2d2">
 
-    <!--<permission android:name="ggikko.me.r2d2.permission.MAPS_RECEIVE" />-->
+    <!-- <permission android:name="ggikko.me.r2d2.permission.MAPS_RECEIVE" /> -->
 
     <uses-permission android:name="ggikko.me.r2d2.locationapi.maps.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,12 +13,12 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".Application"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
 
         <!-- 홈 activity -->
         <activity
@@ -37,12 +37,12 @@
         <!-- 로그인 activity -->
         <activity
             android:name=".user.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBarWhite" />
 
         <!-- 회원가입 activity -->
         <activity
             android:name=".user.JoinActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBarWhite" />
 
         <!-- 내 주변 맛집 activity -->
         <activity
@@ -51,18 +51,24 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 지하철 선택 activity -->
-        <activity android:name=".subway.SubwayActivty"
+        <activity
+            android:name=".subway.SubwayActivty"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 지하철 선택 activity -->
-        <activity android:name=".map.MapActivity"
+        <activity
+            android:name=".map.MapActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 푸쉬 셋팅 activity -->
+        <activity
+            android:name=".push.PushSettingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 구글맵 API KEY -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/googlemap_apikey" />
-
 
     </application>
 

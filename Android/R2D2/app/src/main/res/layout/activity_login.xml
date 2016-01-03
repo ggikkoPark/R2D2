@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
+    android:layout_margin="20dp"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,15 +25,12 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:textSize="60sp"
+            android:textSize="80sp"
             android:textColor="@color/main"
             android:textStyle="bold"
+            android:layout_marginBottom="20dp"
             android:text="R2D2"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
 
         <EditText
             android:id="@+id/edit_input_email"
@@ -41,8 +38,11 @@
             android:layout_height="0dp"
             android:layout_weight="1.5"
             android:padding="5dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_login_background"
+            android:textSize="@dimen/edit_logon_size"
             android:hint="이메일"/>
 
 
@@ -52,18 +52,22 @@
             android:layout_height="0dp"
             android:layout_weight="1.5"
             android:padding="5dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_login_background"
+            android:textSize="@dimen/edit_logon_size"
             android:hint="비밀번호"/>
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/main"
             android:textColor="@color/white"
-            android:layout_margin="5dp"
             android:textSize="@dimen/textsize_logon_button"
             android:text="로그인"/>
 

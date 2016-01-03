@@ -78,9 +78,9 @@ public class SubwayAdapter extends ExpandableRecyclerAdapter<SubwayAdapter.Locat
 
                     String fullText = name.getText().toString();
                     Intent intent = new Intent();
-                    intent.putExtra("location", fullText);
+                    intent.putExtra("subway", fullText);
 
-                    ((SubwayActivty)mContext).setResult(ResultCodeCollections.RESULTCODE_HOMEACTIVITY_SUBWAY , intent);;
+                    ((SubwayActivty)mContext).setResult(0 , intent);;
                     ((SubwayActivty)mContext).finish();
                 }
             });

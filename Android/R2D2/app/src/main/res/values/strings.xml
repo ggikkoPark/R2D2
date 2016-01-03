@@ -11,7 +11,7 @@
 
     <string name="navi_menu_home">홈으로</string>
     <string name="navi_menu_map">지도</string>
-    <string name="navi_menu_around">내 주변 맛집 추가</string>
+    <string name="navi_menu_around">주변 맛집 설정</string>
     <string name="navi_menu_pushsetting">푸쉬 설정</string>
     <string name="navi_menu_help">문의하기</string>
 

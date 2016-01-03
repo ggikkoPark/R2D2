@@ -20,7 +20,6 @@ import ggikko.me.r2d2.home.HomeActivity;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    TextView txt_login_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

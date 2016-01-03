@@ -3,7 +3,7 @@
     android:oneshot="false">
 
     <item
-        android:drawable="@drawable/darthvader_32size"
+        android:drawable="@drawable/r2d2_32size"
         android:duration="200"/>
 
     <item
@@ -11,20 +11,14 @@
         android:duration="200"/>
 
     <item
-        android:drawable="@drawable/darthvader_64size"
+        android:drawable="@drawable/r2d2_32size"
         android:duration="200"/>
 
     <item
-        android:drawable="@drawable/r2d2_64size"
+        android:drawable="@drawable/r2d2_32size"
         android:duration="200"/>
 
-    <item
-        android:drawable="@drawable/darthvader_128size"
-        android:duration="200"/>
 
-    <item
-        android:drawable="@drawable/r2d2_128size"
-        android:duration="200"/>
 
 
 </animation-list>
