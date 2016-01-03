@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.home.HomeActivity;
+import ggikko.me.r2d2.util.SharedInformation;
 
 /**
  * 로그인 화면 Activity
@@ -68,5 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedInformation sharedInformation = SharedInformation.getInstance();
+        String token = sharedInformation.getToken(LoginActivity.this);
+        Log.e("ggikko", token);
     }
 }

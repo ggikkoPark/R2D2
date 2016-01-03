@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import ggikko.me.r2d2.domain.UserDto;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.JoinValidators;
 import ggikko.me.r2d2.util.ResultCodeCollections;
+import ggikko.me.r2d2.util.SharedInformation;
 import ggikko.me.r2d2.util.UserDeserializer;
 import retrofit.Call;
 import retrofit.Callback;
@@ -187,32 +189,66 @@ public class JoinActivity extends AppCompatActivity {
 
                 UserDto.JoinResponse body = response.body();
 
+                if (body != null) {
 
-                if (statusIsCreated(code)) {
+                    if (body.getUserId() != null) {
 
-                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_success, Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                        Snackbar snackbar = Snackbar.make(v, R.string.snack_join_success, Snackbar.LENGTH_LONG);
+                        snackbar.show();
 
-                    /** status code가 200, 201 */
-                    String userId = body.getUserId();
+                        /** status code가 200, 201 */
+                        String userId = body.getUserId();
+                        SharedInformation sharedInformation = SharedInformation.getInstance();
+                        sharedInformation.saveToken(JoinActivity.this, userId);
+                        Log.e("ggikko", userId);
 
-                    finish();
+                        finish();
 
-                } else {
-                    /** status code가 400, 401, 403, etc */
+                    } else {
 
-                    /** 잘못된 요청 */
-                    //TODO : bad request 처리
-                    /** 중복된 아이디 */
-//                    if (body.getCode().equals("duplicated.username.exception")) {
-                    // TODO : snack bar로 바꿀 예정임
+                        /** status code가 400, 401, 403, etc */
 
-                    txt_join_email.setVisibility(View.VISIBLE);
-                    txt_join_email.setText("이메일이 중복됩니다");
+                        /** 잘못된 요청 */
+                        //TODO : bad request 처리
+                        /** 중복된 아이디 */
+                        if (body.getCode().equals("duplicated.username.exception")) {
 
-                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_fail, Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                            txt_join_email.setVisibility(View.VISIBLE);
+                            txt_join_email.setText(body.getMessage());
+
+                            Snackbar snackbar = Snackbar.make(v, R.string.snack_join_fail, Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+                    }
+
                 }
+
+
+//                if (statusIsCreated(code)) {
+//
+//                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_success, Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
+//
+//                    /** status code가 200, 201 */
+//                    String userId = body.getUserId();
+//
+//                    finish();
+//
+//                } else {
+//                    /** status code가 400, 401, 403, etc */
+//
+//                    /** 잘못된 요청 */
+//                    //TODO : bad request 처리
+//                    /** 중복된 아이디 */
+////                    if (body.getCode().equals("duplicated.username.exception")) {
+//                    // TODO : snack bar로 바꿀 예정임
+//
+//                    txt_join_email.setVisibility(View.VISIBLE);
+//                    txt_join_email.setText("이메일이 중복됩니다");
+//
+//                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_fail, Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
+//                }
             }
 
 
@@ -225,7 +261,7 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
 
-                Snackbar snackbar = Snackbar.make(v, R.string.snack_join_servererror, Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(v, R.string.snack_join_servererror, Snackbar.LENGTH_LONG);
                 snackbar.show();
 
                 pDialog.hide();
