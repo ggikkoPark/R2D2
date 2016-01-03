@@ -18,5 +18,14 @@ public interface UserAPI {
     @POST("users")
     Call<UserDto.JoinResponse> createUser(@Body UserDto.Create createUser);
 
+    /**
+     * 로그온 요청 API 인터페이스
+     * @param reqLogon
+     * @return
+     */
+    @POST("logon")
+    Call<UserDto.BaseResponse> reqLogon(@Body UserDto.Logon reqLogon);
+
+
 
 }

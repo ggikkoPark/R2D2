@@ -14,20 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.api.user.UserAPI;
 import ggikko.me.r2d2.domain.UserDto;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.JoinValidators;
 import ggikko.me.r2d2.util.ResultCodeCollections;
+import ggikko.me.r2d2.util.RetrofitInstance;
 import ggikko.me.r2d2.util.SharedInformation;
-import ggikko.me.r2d2.util.UserDeserializer;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -161,17 +157,13 @@ public class JoinActivity extends AppCompatActivity {
      */
     private void requestJoinToServer(String email, String password, String subway, View v) {
 
-
+        /** 다이얼로그 생성 */
         final ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("잠시만 기다려주세요.");
         pDialog.show();
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(UserDto.Create.class, new UserDeserializer()).create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UrlInformation.URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+        RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
+        Retrofit retrofit = retrofitInstance.getJoinRetrofit();
 
         UserDto.Create createUser = new UserDto.Create(email, password, subway);
         UserAPI userAPI = retrofit.create(UserAPI.class);
@@ -183,10 +175,6 @@ public class JoinActivity extends AppCompatActivity {
             public void onResponse(Response<UserDto.JoinResponse> response, Retrofit retrofit) {
 
                 pDialog.hide();
-
-                int code = response.code();
-                String message = response.message();
-
                 UserDto.JoinResponse body = response.body();
 
                 if (body != null) {
@@ -200,8 +188,6 @@ public class JoinActivity extends AppCompatActivity {
                         String userId = body.getUserId();
                         SharedInformation sharedInformation = SharedInformation.getInstance();
                         sharedInformation.saveToken(JoinActivity.this, userId);
-                        Log.e("ggikko", userId);
-
                         finish();
 
                     } else {
@@ -220,35 +206,7 @@ public class JoinActivity extends AppCompatActivity {
                             snackbar.show();
                         }
                     }
-
                 }
-
-
-//                if (statusIsCreated(code)) {
-//
-//                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_success, Snackbar.LENGTH_SHORT);
-//                    snackbar.show();
-//
-//                    /** status code가 200, 201 */
-//                    String userId = body.getUserId();
-//
-//                    finish();
-//
-//                } else {
-//                    /** status code가 400, 401, 403, etc */
-//
-//                    /** 잘못된 요청 */
-//                    //TODO : bad request 처리
-//                    /** 중복된 아이디 */
-////                    if (body.getCode().equals("duplicated.username.exception")) {
-//                    // TODO : snack bar로 바꿀 예정임
-//
-//                    txt_join_email.setVisibility(View.VISIBLE);
-//                    txt_join_email.setText("이메일이 중복됩니다");
-//
-//                    Snackbar snackbar = Snackbar.make(v, R.string.snack_join_fail, Snackbar.LENGTH_SHORT);
-//                    snackbar.show();
-//                }
             }
 
 
@@ -263,7 +221,6 @@ public class JoinActivity extends AppCompatActivity {
 
                 Snackbar snackbar = Snackbar.make(v, R.string.snack_join_servererror, Snackbar.LENGTH_LONG);
                 snackbar.show();
-
                 pDialog.hide();
             }
         });

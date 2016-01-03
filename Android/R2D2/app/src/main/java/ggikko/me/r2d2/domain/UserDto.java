@@ -43,4 +43,26 @@ public class UserDto {
         private String message;
     }
 
+    /**
+     *  token 로그인
+     */
+    @Data
+    @AllArgsConstructor
+    public static class Logon{
+        private String userId;
+    }
+
+    /**
+     *  서버로 부터 받는 기본 응답
+     *  code, message
+     */
+    @Data
+    @AllArgsConstructor
+    public static class BaseResponse {
+
+        private String message;
+        private String code;
+
+    }
+
 }
