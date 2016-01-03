@@ -55,7 +55,7 @@
             android:name=".subway.SubwayActivty"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 지하철 선택 activity -->
+        <!-- 지도 activity -->
         <activity
             android:name=".map.MapActivity"
             android:theme="@style/AppTheme.NoActionBar" />

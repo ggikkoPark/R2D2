@@ -8,7 +8,7 @@
     <!-- 로그인 부분 -->
     <dimen name="textsize_logon_button">20sp</dimen>
     <dimen name="textsize_logon_join">15sp</dimen>
-    <dimen name="login_entire_margin">20dp</dimen>
+    <dimen name="login_entire_margin">40dp</dimen>
 
     <dimen name="edit_bottomright_radius">5dp</dimen>
     <dimen name="edit_bottomleft_radius">5dp</dimen>

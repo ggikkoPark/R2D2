@@ -14,8 +14,7 @@ import lombok.Setter;
  */
 public class UserDto {
 
-    @Getter
-    @Setter
+    @Data
     @AllArgsConstructor
     public static class Create {
 
@@ -25,18 +24,23 @@ public class UserDto {
 
     }
 
-
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class JoinResponse{
-
+    public static class LogonResponse{
         private String email;
         private String subwaynumber;
         private String token;
         private String status;
         private String message;
+    }
 
+    @Data
+    @AllArgsConstructor
+    public static class JoinResponse{
+        private String userId;
+        private String code;
+        private String message;
     }
 
 }

@@ -5,6 +5,7 @@ package ggikko.me.r2d2.util;
  */
 public class JoinValidators {
 
+
     public boolean checkEmail(String email){
         if(email.length() > 30)return false;
         if(email.length() < 6)return false;
@@ -23,8 +24,9 @@ public class JoinValidators {
         return true;
     }
 
-    public boolean subwaycheck(String subway){
-        if(subway.trim().equals(""))return false;
+    public boolean checkSubway(String subway){
+        if(subway.equals(""))return false;
+        if(subway.isEmpty())return false;
         return true;
     }
 }

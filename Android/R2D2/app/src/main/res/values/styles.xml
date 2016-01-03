@@ -19,7 +19,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:background">@color/white</item>
     </style>
 
     <!-- 팝업 & AppBar 테마 -->

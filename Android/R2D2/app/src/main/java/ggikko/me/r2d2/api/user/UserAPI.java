@@ -16,7 +16,7 @@ public interface UserAPI {
      * @return
      */
     @POST("users")
-    Call<UserDto.Response> createUser(@Body UserDto.Create createUser);
+    Call<UserDto.JoinResponse> createUser(@Body UserDto.Create createUser);
 
 
 }

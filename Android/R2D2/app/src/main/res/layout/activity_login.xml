@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_margin="20dp"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
 
     <LinearLayout

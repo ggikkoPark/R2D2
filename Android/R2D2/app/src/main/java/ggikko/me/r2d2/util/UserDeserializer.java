@@ -23,9 +23,9 @@ public class UserDeserializer implements JsonDeserializer<Object> {
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
-        JsonElement user = json.getAsJsonObject();
+        JsonElement body = json.getAsJsonObject();
 
-        return (new Gson().fromJson(user, UserDto.JoinResponse.class));
+        return (new Gson().fromJson(body, UserDto.JoinResponse.class));
     }
 
 }

@@ -38,7 +38,7 @@ public class MapFragment extends Fragment {
 
         MapView mapView = (MapView) view.findViewById(R.id.map);
 
-        /** 사용자가 임의로 나갔다가 들어오더라도 맵에 뿌려져있는 정보를 저장해서 다시 랜더링 해*/
+        /** 사용자가 임의로 나갔다가 들어오더라도 맵에 뿌려져있는 정보를 저장해서 다시 랜더링 함 */
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
 

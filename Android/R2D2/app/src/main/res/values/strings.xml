@@ -18,4 +18,9 @@
     <!-- google map api key -->
     <string name="googlemap_apikey">AIzaSyBsFykj_OL6BXqt5eCkGJWqyAWmjj3-nIM</string>
 
+    <!-- 가입 화면 -->
+    <string name="snack_join_success">가입에 성공하였습니다.</string>
+    <string name="snack_join_fail">가입에 실패하였습니다.</string>
+    <string name="snack_join_servererror">일시적인 서버 오류가 발생하였습니다. 재시도 해주세요.</string>
+
 </resources>
