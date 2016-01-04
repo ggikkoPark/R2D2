@@ -21,8 +21,10 @@ import java.util.Date;
 @Setter
 public class User {
 
-    /** 사용자 이메일 PK */
     @Id
+    private String userId;
+
+    /** 사용자 이메일 PK */
     private String email;
 
     /** 사용자 비밀번호 */

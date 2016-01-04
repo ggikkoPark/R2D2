@@ -1,8 +1,8 @@
 package me.r2d2.user;
 
 import me.r2d2.commons.ErrorResponse;
+import me.r2d2.util.BaseDto;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 
@@ -51,9 +52,39 @@ public class UserController {
         }
 
         User newUser = service.createUser(create);
-
-        return new ResponseEntity(mapper.map(newUser, UserDto.Create.class), HttpStatus.CREATED);
+        return new ResponseEntity(mapper.map(newUser, UserDto.CreateResponse.class), HttpStatus.CREATED);
     }
+
+    /**
+     * 토큰 로그인
+     * @param logon
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "/logon", method = POST)
+    public ResponseEntity logonUser(@RequestBody @Valid UserDto.Logon logon, BindingResult result){
+
+        if(result.hasErrors()){
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("잘못된 요청입니다");
+            errorResponse.setCode("bad.request");
+            return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
+        }
+
+        User existUser = repository.findByUserId(logon.getUserId());
+
+        /** 유저가 존재하면 */
+        if(existUser != null){
+            BaseDto.BaseResponse logonResponse = new BaseDto.BaseResponse("true", "userId.exist");
+            return new ResponseEntity(logonResponse, HttpStatus.OK);
+        }
+
+        /** 유저가 존재하지 않으면 */
+        BaseDto.BaseResponse logonResponse = new BaseDto.BaseResponse("false", "userId.Not.exist");
+
+        return new ResponseEntity(logonResponse, HttpStatus.OK);
+    }
+    
 
     /**
      * 유저 중복 예외 처리
@@ -63,9 +94,10 @@ public class UserController {
     @ExceptionHandler(UserDuplicatedException.class)
     public ResponseEntity userDuplicatedExceptionHandler(UserDuplicatedException exception){
         ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setMessage("[" + exception.getEmail()+ "] 중복된 userName 입니다");
+        errorResponse.setMessage(exception.getEmail()+ " 는 중복된 이메일 입니다");
         errorResponse.setCode("duplicated.username.exception");
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        //TODO : Bad request를 줘야하지만 Retrofit이 2.0부터. Bad Request를 받으려면 따로 인터페이스를 만들어줘야해서 잠시 보류
+        return new ResponseEntity<>(errorResponse, HttpStatus.OK);
     }
 
 }

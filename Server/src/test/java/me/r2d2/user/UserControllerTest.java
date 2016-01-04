@@ -23,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 /**
  * Created by Park Ji Hong, ggikko.
  */
@@ -61,6 +60,7 @@ public class UserControllerTest extends TestCase {
     public void createUser() throws Exception {
 
         UserDto.Create createDto = new UserDto.Create();
+
         createDto.setEmail("ggikko@gmail.com");
         createDto.setPassword("12345");
         createDto.setSubwayNumber("1");
@@ -71,17 +71,17 @@ public class UserControllerTest extends TestCase {
 
         result.andDo(print());
         result.andExpect(status().isCreated());
-        result.andExpect(jsonPath("$.email", is("ggikko@gmail.com")));
-        result.andExpect(jsonPath("$.subwayNumber", is("1")));
+//        result.andExpect(jsonPath("$.code", is("duplicated.username.exception")));
+//        result.andExpect(jsonPath("$.email", is("ggikko@gmail.com")));
+//        result.andExpect(jsonPath("$.subwayNumber", is("1")));
 
         result = mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(createDto)));
 
         result.andDo(print());
-        result.andExpect(status().isBadRequest());
+        result.andExpect(status().isOk());
         result.andExpect(jsonPath("$.code", is("duplicated.username.exception")));
-
     }
 
     /**
@@ -102,6 +102,6 @@ public class UserControllerTest extends TestCase {
         result.andDo(print());
         result.andExpect(status().isBadRequest());
         result.andExpect(jsonPath("$.code", is("bad.request")));
-
     }
+
 }

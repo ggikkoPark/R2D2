@@ -10,5 +10,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * 유저 정보 저장소
  */
 public interface UserRepository extends JpaRepository<User, String> {
+
     User findByEmail(String email);
+
+    User findByUserId(String userId);
+
 }

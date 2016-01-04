@@ -10,20 +10,12 @@ import java.util.List;
 
 /**
  * 에러 응답 데이터
+ * 에러 메세지, 코드
  */
 @Data
 public class ErrorResponse {
 
-    private String message;
-
     private String code;
-
-    private List<FieldError> errors;
-
-    public static class FieldError{
-        private String field;
-        private String value;
-        private String reason;
-    }
+    private String message;
 
 }

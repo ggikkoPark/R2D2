@@ -1,11 +1,14 @@
 package me.r2d2.user;
 
+import me.r2d2.util.Encryption;
+import me.r2d2.util.RandomUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Park Ji Hong, ggikko.
@@ -35,10 +38,14 @@ public class UserService {
 
         String email = dto.getEmail();
 
+        /** 유저가 존재할 경우 예외처리 */
         if(repository.findByEmail(email) != null){
             throw new UserDuplicatedException(email);
         }
 
+        user.setUserId(RandomUtil.idGenerator());
+
+        /** 가입 날짜, 업데이트 날짜 삽입 */
         Date now = new Date();
         user.setJoined(now);
         user.setUpdated(now);
