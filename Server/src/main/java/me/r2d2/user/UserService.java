@@ -18,7 +18,6 @@ import java.util.Random;
  * 유저 서비스 for Business logic.
  */
 @Service
-@Transactional
 public class UserService {
 
     @Autowired
@@ -35,8 +34,17 @@ public class UserService {
     public User createUser(UserDto.Create dto) {
 
         User user = modelMapper.map(dto, User.class);
-
         String email = dto.getEmail();
+
+        /** device Id 임시 암호화 */
+        Encryption encryption = new Encryption();
+
+        if(dto.getDeviceId() != null) {
+            String deviceId = encryption.base64Encode(dto.getDeviceId());
+            System.out.printf(dto.getDeviceId());
+            user.setDeviceId(deviceId);
+            System.out.printf(deviceId);
+        }
 
         /** 유저가 존재할 경우 예외처리 */
         if(repository.findByEmail(email) != null){
@@ -52,6 +60,5 @@ public class UserService {
 
         return repository.save(user);
     }
-
 
 }

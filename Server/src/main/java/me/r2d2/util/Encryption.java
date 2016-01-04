@@ -1,5 +1,6 @@
 package me.r2d2.util;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 /**
@@ -11,6 +12,8 @@ import java.util.Base64;
  * 추 후에 Spring security로 변환 예정
  */
 public class Encryption {
+
+    private static String defaultCharset = "utf-8";
 
     /**
      * 암호화 생성
@@ -52,6 +55,27 @@ public class Encryption {
         String encodedString = encoder.encodeToString(targetBytes);
 
         return encodedString;
+
+    }
+
+    /**
+     * base64 디코딩
+     * @param str
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws Exception
+     */
+    public static String base64Decode(String str) throws UnsupportedEncodingException {
+
+        Base64.Decoder decoder = Base64.getDecoder();
+
+        /** Decoder#decode(String src) */
+        byte[] decodedBytes = decoder.decode(str);
+
+        /** 디코딩한 문자열을 표시 */
+        String decodedString = new String(decodedBytes, defaultCharset);
+
+        return decodedString;
 
     }
 

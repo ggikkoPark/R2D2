@@ -31,6 +31,8 @@ public class UserDto {
         @Size(min =5)
         private String password;
 
+        private String deviceId;
+
         @NotBlank
         private String subwayNumber;
 

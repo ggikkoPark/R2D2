@@ -21,6 +21,7 @@ public class RestaurantDto {
 
     @Data
     public static class Restaurants{
+
         /** 맛집 1 */
         private String restaurant1;
         /** 맛집 2 */
@@ -41,6 +42,7 @@ public class RestaurantDto {
         private String restaurant9;
         /** 맛집 10 */
         private String restaurant10;
+
     }
 
 }

@@ -26,7 +26,7 @@ public class RestaurantController {
     private RestaurantService service;
 
     @RequestMapping(value = "/restaurants", method = POST)
-    public ResponseEntity createUser(@RequestBody @Valid RestaurantDto.GetRestaurants getRestaurants, BindingResult result){
+    public ResponseEntity getRestaurants(@RequestBody @Valid RestaurantDto.GetRestaurants getRestaurants, BindingResult result){
 
         if(result.hasErrors()){
             ErrorResponse errorResponse = new ErrorResponse();
