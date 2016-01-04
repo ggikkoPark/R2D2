@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,11 +23,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ggikko.me.r2d2.R;
+import ggikko.me.r2d2.api.restaurant.RestaurantAPI;
+import ggikko.me.r2d2.api.user.UserAPI;
 import ggikko.me.r2d2.around.AroundActivity;
+import ggikko.me.r2d2.domain.BaseDto;
+import ggikko.me.r2d2.domain.RestaurantDto;
+import ggikko.me.r2d2.domain.UserDto;
 import ggikko.me.r2d2.map.MapActivity;
 import ggikko.me.r2d2.push.PushSettingActivity;
 import ggikko.me.r2d2.subway.SubwayActivty;
+import ggikko.me.r2d2.user.JoinActivity;
+import ggikko.me.r2d2.user.LoginActivity;
 import ggikko.me.r2d2.util.ResultCodeCollections;
+import ggikko.me.r2d2.util.RetrofitInstance;
+import ggikko.me.r2d2.util.SharedInformation;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * 로그인 후 첫 홈 화면 Activity
@@ -35,8 +49,30 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
+    private Button btn_selected_subway;
+    private String subwayName;
+
+    RestaurantListFragment restaurantListFragment;
 
     private static String TAG = "HomeActivity";
+
+    /**
+     * 역 설정 버튼을 누른 후 역 값을 받아온다
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode) {
+
+            /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
+            case 0: {
+                subwayName = data.getStringExtra("subway");
+                btn_selected_subway.setText(subwayName);
+                break;
+            }
+        }
+    }
 
 
     @Override
@@ -61,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void toolbarSetting() {
-        Toolbar toolbar = (Toolbar)findViewById(R.id.mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -72,35 +108,31 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void navigationViewSetting() {
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navView = (NavigationView) findViewById(R.id.navigation_view);
-        if (navView != null){
+        if (navView != null) {
             /** Drawer 내부의 내용 및 이벤트 설정 */
             setupDrawerContent(navView);
         }
     }
 
     private void viewpagerSetting() {
-        viewPager = (ViewPager)findViewById(R.id.tab_viewpager);
-        if (viewPager != null){
+        viewPager = (ViewPager) findViewById(R.id.tab_viewpager);
+        if (viewPager != null) {
             setupViewPager(viewPager);
         }
     }
 
     private void buttonSettingForSubway() {
-        Button btn_selected_subway = (Button) findViewById(R.id.btn_selected_subway);
-        btn_selected_subway.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SubwayActivty.class);
-                startActivityForResult(intent, ResultCodeCollections.RESULTCODE_HOMEACTIVITY_SUBWAY);
-            }
-        });
+        btn_selected_subway = (Button) findViewById(R.id.btn_selected_subway);
+        btn_selected_subway.setOnClickListener(v -> goToSubwayActivity());
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new RestaurantListFragment(), "맛집 리스트");
+
+        restaurantListFragment = RestaurantListFragment.getInstance();
+        adapter.addFrag(restaurantListFragment, "맛집 리스트");
         viewPager.setAdapter(adapter);
     }
 
@@ -111,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager){
+        public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -120,21 +152,27 @@ public class HomeActivity extends AppCompatActivity {
             return mFragmentList.get(position);
         }
 
-        /** 뷰페이즈 페이지 수 설정 */
+        /**
+         * 뷰페이즈 페이지 수 설정
+         */
         @Override
         public int getCount() {
             return mFragmentList.size();
         }
 
-        /** 뷰페이저 list + title 추가 */
-        public void addFrag(Fragment fragment, String title){
+        /**
+         * 뷰페이저 list + title 추가
+         */
+        public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
 
-        /** 뷰페이저 타이틀 설정 */
+        /**
+         * 뷰페이저 타이틀 설정
+         */
         @Override
-        public CharSequence getPageTitle(int position){
+        public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
 
@@ -143,9 +181,10 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * 네비게이션 드로어 부분입니다. 각 메뉴 부분을 설정할 수 있고, 이벤트를 걸 수 있습니다. FLAG는 각 메뉴 아이템들의 아이디 입니다.
+     *
      * @param navigationView
      */
-    private void setupDrawerContent(NavigationView navigationView){
+    private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -202,9 +241,9 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case android.R.id.home:
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else {
                     drawerLayout.openDrawer(GravityCompat.START);
@@ -214,5 +253,63 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void requestRestaurants() {
+        SharedInformation sharedInformation = SharedInformation.getInstance();
+        String token = sharedInformation.getToken(HomeActivity.this);
+
+        if (!token.equals("R2D2")) {
+
+            /** 로그인에 사용할 retrofit instance 얻어옴 */
+            RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
+            Retrofit retrofit = retrofitInstance.getRestaurantList();
+
+            RestaurantDto.GetRestaurants getRestaurants = new RestaurantDto.GetRestaurants("1", token);
+            RestaurantAPI restaurantAPI = retrofit.create(RestaurantAPI.class);
+
+            Call<RestaurantDto.GetRestaurantsResponse> logonCall = restaurantAPI.reqRestaurants(getRestaurants);
+
+            /** retrofit 콜백 메소드 성공시 onResponse, 실패시 onFailure */
+            logonCall.enqueue(new Callback<RestaurantDto.GetRestaurantsResponse>() {
+
+                @Override
+                public void onResponse(Response<RestaurantDto.GetRestaurantsResponse> response, Retrofit retrofit) {
+                    RestaurantDto.GetRestaurantsResponse body = response.body();
+                    Log.e("ggikko", "ok");
+                    if (body != null) {
+
+                        if(body.getCode() != null){
+                            Log.e("ggikko", "getRestaurant return code : " + body.getCode());
+                        }
+
+                        restaurantListFragment.changeListData(body);
+
+                    } else {
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                }
+            });
+
+        }
+    }
+    /**
+     * 다음 화면 페이지 넘어간다(역 설정 화면)
+     */
+    private void goToSubwayActivity() {
+        Intent intent = new Intent(HomeActivity.this, SubwayActivty.class);
+        startActivityForResult(intent, ResultCodeCollections.RESULTCODE_HOMEACTIVITY_SUBWAY);
+    }
+
+    /**
+     * resume 상태마다 맛집 정보를 불러온다.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestRestaurants();
     }
 }

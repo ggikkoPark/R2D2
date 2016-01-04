@@ -21,7 +21,7 @@ public class UserDto {
         private String email;
         private String password;
         private String subwayNumber;
-
+        private String deviceId;
     }
 
     @Getter
@@ -52,17 +52,6 @@ public class UserDto {
         private String userId;
     }
 
-    /**
-     *  서버로 부터 받는 기본 응답
-     *  code, message
-     */
-    @Data
-    @AllArgsConstructor
-    public static class BaseResponse {
 
-        private String message;
-        private String code;
-
-    }
 
 }

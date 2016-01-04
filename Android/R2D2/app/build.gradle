@@ -59,6 +59,7 @@ android {
  * recycler view
  * card view
  * multidex
+ * gcm
  */
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -72,7 +73,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.3.0'
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:multidex:1.0.0'
-        compile 'org.projectlombok:lombok:1.16.6'
+    compile 'org.projectlombok:lombok:1.16.6'
     //    compile 'com.google.android.gms:play-services-analytics:8.3.0'
     //    compile 'io.reactivex:rxandroid:1.1.0'
 }

@@ -1,8 +1,12 @@
 package ggikko.me.r2d2.user;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,11 +16,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.api.user.UserAPI;
 import ggikko.me.r2d2.domain.UserDto;
+import ggikko.me.r2d2.gcm.GcmPreferences;
+import ggikko.me.r2d2.gcm.RegisterationIntentService;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.JoinValidators;
 import ggikko.me.r2d2.util.ResultCodeCollections;
@@ -32,9 +42,23 @@ import retrofit.Retrofit;
  */
 public class JoinActivity extends AppCompatActivity {
 
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "JoinActivity";
+
+    private ProgressBar mGcm_Progressbar;
+    private BroadcastReceiver mGcm_BroadcastReceiver;
+
+    String gcmToken;
+
     EditText edit_join_email, edit_join_password, edit_join_password_check, edit_select_subway;
     TextView txt_join_email, txt_join_password, txt_join_passwordcheck, txt_join_subway;
     Button btn_join;
+
+    private String email;
+    private String password;
+    private String passwordCheck;
+    private String subway;
+
 
     /**
      * 역 설정 버튼을 누른 후 역 값을 받아온다
@@ -59,6 +83,9 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+        /** 브로드캐스트 리스버 등록 */
+        setBroadcastReceiver();
+
         /** Toolbar setting */
         toolbarSetting();
 
@@ -67,6 +94,7 @@ public class JoinActivity extends AppCompatActivity {
 
         /** text view setting */
         findTextView();
+
 
         /** 지하철 역설정 */
         selectSubwaySetting();
@@ -128,10 +156,10 @@ public class JoinActivity extends AppCompatActivity {
         boolean subwayCheckOK = false;
 
         /** 유효성 검사할 각 값들을 받아온다. */
-        String email = edit_join_email.getText().toString();
-        String password = edit_join_password.getText().toString();
-        String passwordCheck = edit_join_password_check.getText().toString();
-        String subway = edit_select_subway.getText().toString();
+        email = edit_join_email.getText().toString();
+        password = edit_join_password.getText().toString();
+        passwordCheck = edit_join_password_check.getText().toString();
+        subway = edit_select_subway.getText().toString();
 
         /** 유효성 검사 */
         JoinValidators validators = new JoinValidators();
@@ -147,7 +175,10 @@ public class JoinActivity extends AppCompatActivity {
         if (!subwayCheckOK) txt_join_email.setVisibility(View.VISIBLE);
 
         if (emailIsOk && pwdIsOk & pwdCheckIsOk & subwayCheckOK)
-            requestJoinToServer(email, password, subway, v);
+
+            getInstanceIdToken();
+        Log.e("ggikko", "gcm toke : " + gcmToken);
+
     }
 
     /**
@@ -157,15 +188,10 @@ public class JoinActivity extends AppCompatActivity {
      */
     private void requestJoinToServer(String email, String password, String subway, View v) {
 
-        /** 다이얼로그 생성 */
-        final ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("잠시만 기다려주세요.");
-        pDialog.show();
-
         RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
         Retrofit retrofit = retrofitInstance.getJoinRetrofit();
 
-        UserDto.Create createUser = new UserDto.Create(email, password, subway);
+        UserDto.Create createUser = new UserDto.Create(email, password, subway, gcmToken);
         UserAPI userAPI = retrofit.create(UserAPI.class);
         Call<UserDto.JoinResponse> createUserCall = userAPI.createUser(createUser);
 
@@ -174,7 +200,6 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<UserDto.JoinResponse> response, Retrofit retrofit) {
 
-                pDialog.hide();
                 UserDto.JoinResponse body = response.body();
 
                 if (body != null) {
@@ -221,10 +246,8 @@ public class JoinActivity extends AppCompatActivity {
 
                 Snackbar snackbar = Snackbar.make(v, R.string.snack_join_servererror, Snackbar.LENGTH_LONG);
                 snackbar.show();
-                pDialog.hide();
             }
         });
-
     }
 
     /**
@@ -245,4 +268,101 @@ public class JoinActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    /**
+     * 디바이스 토큰을 가져오고 service실행
+     */
+    public void getInstanceIdToken() {
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(JoinActivity.this, RegisterationIntentService.class);
+            startService(intent);
+        }
+    }
+
+
+    /**
+     * 구글 서비스 환경 체크
+     */
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(JoinActivity.this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, JoinActivity.this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * BroadcastReceiver 셋팅
+     */
+    private void setBroadcastReceiver() {
+
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        mGcm_BroadcastReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String action = intent.getAction();
+
+                /** GcmToken 생성 준비중 */
+                if (action.equals(GcmPreferences.READY)) {
+                    pDialog.show();
+                }
+
+                /** GcmToken 생성중 */
+                if (action.equals(GcmPreferences.GENERATING)) {
+//                    mGcm_Progressbar.setVisibility(View.VISIBLE);
+//                    mGcm_textview.setVisibility(View.VISIBLE);
+//                    mGcm_textview.setText(getString(R.string.generating));
+                }
+
+                /** GcmToken 생성 완료 */
+                if (action.equals(GcmPreferences.COMPLETE)) {
+//                    mGcm_Progressbar.setVisibility(View.GONE);
+//                    mGcm_Button.setText(getString(R.string.complete));
+                    pDialog.hide();
+                    gcmToken = intent.getStringExtra("token");
+                    Log.e("ggikko", "gcm toto : " + gcmToken);
+                    requestJoinToServer(email, password, subway, btn_join);
+
+//                    mGcm_textview.setText(token);
+                }
+            }
+        };
+    }
+
+    /**
+     * Resume 브로드 캐스트 리시버 등록
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mGcm_BroadcastReceiver,
+                new IntentFilter(GcmPreferences.READY));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mGcm_BroadcastReceiver,
+                new IntentFilter(GcmPreferences.GENERATING));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mGcm_BroadcastReceiver,
+                new IntentFilter(GcmPreferences.COMPLETE));
+    }
+
+    /**
+     * Pause상태 시 LocalBroadCast삭제
+     */
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mGcm_BroadcastReceiver);
+        super.onPause();
+    }
+
+
 }

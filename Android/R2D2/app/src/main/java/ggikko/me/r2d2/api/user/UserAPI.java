@@ -1,5 +1,6 @@
 package ggikko.me.r2d2.api.user;
 
+import ggikko.me.r2d2.domain.BaseDto;
 import ggikko.me.r2d2.domain.UserDto;
 import retrofit.Call;
 import retrofit.http.Body;
@@ -24,8 +25,6 @@ public interface UserAPI {
      * @return
      */
     @POST("logon")
-    Call<UserDto.BaseResponse> reqLogon(@Body UserDto.Logon reqLogon);
-
-
+    Call<BaseDto.BaseResponse> reqLogon(@Body UserDto.Logon reqLogon);
 
 }

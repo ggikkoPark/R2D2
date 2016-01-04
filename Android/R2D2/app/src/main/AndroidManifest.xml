@@ -11,6 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="ggikko.me.r2d2.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="ggikko.me.r2d2.permission.C2D_MESSAGE" />
+
 
     <application
         android:name=".Application"
@@ -64,6 +72,40 @@
         <activity
             android:name=".push.PushSettingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- GCM GcmReceiver -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="ggikko.me.r2d2.gcm" />
+            </intent-filter>
+        </receiver>
+
+        <!-- GCM Listener-->
+        <service
+            android:name="ggikko.me.r2d2.gcm.GcmListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <!-- GCM InstanceIDListenerService-->
+        <service
+            android:name="ggikko.me.r2d2.gcm.InstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <!-- GCM RegisterationIntentService-->
+        <service
+            android:name="ggikko.me.r2d2.gcm.RegisterationIntentService"
+            android:exported="false"></service>
 
         <!-- 구글맵 API KEY -->
         <meta-data

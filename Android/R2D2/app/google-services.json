@@ -1,17 +1,17 @@
 {
   "project_info": {
-    "project_id": "ggikkogcm",
-    "project_number": "658396622697",
-    "name": "GgikkoGCM"
+    "project_id": "r2d2gcm",
+    "project_number": "842667624603",
+    "name": "r2d2GCM"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:658396622697:android:6fb907be5dfb68e9",
-        "client_id": "android:ggikko.me.ggikkogcm",
+        "mobilesdk_app_id": "1:842667624603:android:8fff3c18212a5de4",
+        "client_id": "android:ggikko.me.r2d2",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "ggikko.me.ggikkogcm"
+          "package_name": "ggikko.me.r2d2"
         }
       },
       "oauth_client": [],

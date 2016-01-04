@@ -60,51 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedInformation sharedInformation = SharedInformation.getInstance();
-        String token = sharedInformation.getToken(LoginActivity.this);
 
-        if (!token.equals("R2D2")) {
-
-            /** 로그인에 사용할 retrofit instance 얻어옴 */
-            RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
-            Retrofit retrofit = retrofitInstance.getLogonRetrofit();
-
-            /** 다이얼로그 생성 */
-            final ProgressDialog pDialog = new ProgressDialog(this);
-            pDialog.setMessage("잠시만 기다려주세요.");
-            pDialog.show();
-
-            UserDto.Logon logon = new UserDto.Logon(token);
-            UserAPI userAPI = retrofit.create(UserAPI.class);
-            Call<UserDto.BaseResponse> logonCall = userAPI.reqLogon(logon);
-
-            /** retrofit 콜백 메소드 성공시 onResponse, 실패시 onFailure */
-            logonCall.enqueue(new Callback<UserDto.BaseResponse>() {
-                @Override
-                public void onResponse(Response<UserDto.BaseResponse> response, Retrofit retrofit) {
-                    UserDto.BaseResponse body = response.body();
-                    Log.e("ggikko", "ok");
-                    if (body != null) {
-                        pDialog.hide();
-                        String code = body.getCode();
-                        if (code != null) {
-                            if (code.equals("true")) {
-                                goToHomeActivity();
-                                finish();
-                            } else {
-                                Log.e("ggikko", "not");
-                            }
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-
-                }
-            });
-        }
     }
 
 }

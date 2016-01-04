@@ -34,8 +34,6 @@ public class SubwayActivty extends AppCompatActivity {
         SubwayAdapter adapter = new SubwayAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-
     }
 
     /**

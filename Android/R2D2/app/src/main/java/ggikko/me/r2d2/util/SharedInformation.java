@@ -49,7 +49,7 @@ public class SharedInformation {
             Log.e("ggikko", token + "   2");
             return token;
         }
-        return "";
+        return DEFAULT;
     }
 
 
