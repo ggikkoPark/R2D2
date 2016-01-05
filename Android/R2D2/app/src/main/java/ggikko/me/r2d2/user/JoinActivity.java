@@ -95,7 +95,6 @@ public class JoinActivity extends AppCompatActivity {
         /** text view setting */
         findTextView();
 
-
         /** 지하철 역설정 */
         selectSubwaySetting();
 
@@ -109,8 +108,9 @@ public class JoinActivity extends AppCompatActivity {
 
         /** 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다. */
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("");
     }
 
     private void findEditText() {
@@ -211,8 +211,10 @@ public class JoinActivity extends AppCompatActivity {
 
                         /** status code가 200, 201 */
                         String userId = body.getUserId();
+                        String subwayNumber = body.getSubwayNumber();
                         SharedInformation sharedInformation = SharedInformation.getInstance();
                         sharedInformation.saveToken(JoinActivity.this, userId);
+                        sharedInformation.saveSubwayNumber(JoinActivity.this, subwayNumber);
                         finish();
 
                     } else {

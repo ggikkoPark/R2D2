@@ -19,8 +19,14 @@ public class SharedInformation {
     /** 토큰 저장 파일명 */
     String TOKEN_FILE_NAME = "TOKENSTORE";
 
+    /** 지하철 역 저장 파일명 */
+    String SUBWAYNUMBER_FILE_NAME = "SUBWAYNUMBERSTORE";
+
     /** 토큰 찾아오는 키 */
     String TOKEN_KEY = "TOKEN";
+
+    /** 지하철역 찾아오는 키 */
+    String SUBWAYNUMBER_KEY = "SUBWAYNUMBER";
 
     public static final String DEFAULT = "R2D2";
 
@@ -39,14 +45,29 @@ public class SharedInformation {
         editor.putString(TOKEN_KEY, token);
         editor.commit();
     }
+    /** 지하철 역 저장 */
+    public void saveSubwayNumber(Context context, String subwayNumber) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SUBWAYNUMBER_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SUBWAYNUMBER_KEY, subwayNumber);
+        editor.commit();
+    }
 
     /** 토큰 획득 */
     public String getToken(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(TOKEN_FILE_NAME, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(TOKEN_KEY, DEFAULT);
-        Log.e("ggikko", token + "   1");
         if(token != null){
-            Log.e("ggikko", token + "   2");
+            return token;
+        }
+        return DEFAULT;
+    }
+
+    /** 지하철역 획득 */
+    public String getSubwayNumber(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SUBWAYNUMBER_FILE_NAME, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(SUBWAYNUMBER_KEY, DEFAULT);
+        if(token != null){
             return token;
         }
         return DEFAULT;

@@ -2,9 +2,10 @@
 
     <!-- 기본 애플리케이션 테마 -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimaryDark">@color/main_text</item>
+        <item name="colorAccent">@color/main_text</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow</item>
     </style>
 
     <!-- 기본 NoactionBar 배경 -->
@@ -12,6 +13,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow</item>
     </style>
 
     <!-- 기본 NoactionBar + 하얀 배경 -->
@@ -19,6 +21,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow</item>
     </style>
 
     <!-- 팝업 & AppBar 테마 -->

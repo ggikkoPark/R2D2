@@ -38,9 +38,5 @@ public class RestaurantDto {
         /** 맛집 10 */
         private String restaurant10;
 
-        private String code;
-        private String message;
-
-
     }
 }

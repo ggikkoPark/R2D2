@@ -34,6 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main"
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
@@ -44,7 +45,7 @@
             android:layout_marginRight="@dimen/main_cardview_right"
             android:layout_marginTop="@dimen/main_cardview_top"
             android:layout_weight="3"
-            card_view:cardBackgroundColor="@color/white"
+            card_view:cardBackgroundColor="@color/push_background"
             card_view:cardCornerRadius="@dimen/cardview_push_radius"
             card_view:cardElevation="5dp">
 
@@ -67,6 +68,7 @@
                         android:layout_gravity="center"
                         android:text="시간 설정"
                         android:textSize="@dimen/txt_push_title"
+                        android:textColor="@color/main_text"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -94,6 +96,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1.5"
                     android:gravity="center"
+                    android:background="@color/push_background"
                     android:orientation="horizontal">
 
                     <ggikko.me.r2d2.spinner.NiceSpinner
@@ -102,12 +105,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:textSize="@dimen/txt_spinner_size"
+                        android:textColor="@color/silver"
+                        android:backgroundTint="@color/push_background"
+                        android:shadowColor="@color/push_background"
+                        android:background="@color/main"
                         android:text="h" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textColor="@color/silver"
                         android:gravity="left|center"
                         android:textSize="@dimen/txt_spinner_size"
                         android:text="시" />
@@ -117,6 +125,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="@color/main"
+                        android:backgroundTint="@color/push_background"
+                        android:shadowColor="@color/push_background"
+                        android:textColor="@color/silver"
                         android:textSize="@dimen/txt_spinner_size"
                         android:text="m" />
 
@@ -125,6 +137,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="left|center"
+                        android:textColor="@color/silver"
                         android:textSize="@dimen/txt_spinner_size"
                         android:text="분" />
 
@@ -142,7 +155,7 @@
             android:layout_marginLeft="@dimen/main_cardview_left"
             android:layout_marginRight="@dimen/main_cardview_right"
             android:layout_weight="3"
-            card_view:cardBackgroundColor="@color/white"
+            card_view:cardBackgroundColor="@color/push_background"
             card_view:cardCornerRadius="@dimen/cardview_push_radius"
             card_view:cardElevation="5dp">
 
@@ -164,6 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="역 설정"
+                        android:textColor="@color/main_text"
                         android:textSize="@dimen/txt_push_title"
                         android:textStyle="bold" />
 
@@ -199,7 +213,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7"
-
+                        android:textColor="@color/silver"
+                        android:backgroundTint="@color/push_background"
+                        android:shadowColor="@color/push_background"
+                        android:background="@color/main"
                         android:textSize="@dimen/txt_spinner_size"
                         android:text="정자역" />
 
@@ -218,7 +235,7 @@
             android:layout_marginLeft="@dimen/main_cardview_left"
             android:layout_marginRight="@dimen/main_cardview_right"
             android:layout_weight="2"
-            card_view:cardBackgroundColor="@color/white"
+            card_view:cardBackgroundColor="@color/push_background"
             card_view:cardCornerRadius="@dimen/cardview_push_radius"
             card_view:cardElevation="5dp">
 
@@ -227,6 +244,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@color/push_background"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -243,6 +261,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:text="버전정보"
+                        android:textColor="@color/main_text"
                         android:textSize="@dimen/txt_push_title"
                         android:textStyle="bold" />
 
@@ -265,13 +284,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="on/off" />
+                android:background="@drawable/btn_around_onoff"
+                />
 
 
         </LinearLayout>

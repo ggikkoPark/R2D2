@@ -123,7 +123,7 @@ public class RestaurantListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ResultRecyclerViewAdapter.ViewHolder holder, int position) {
-            holder.mTextview.setText(mValues[position]);
+            holder.mTextview.setText((position+1) + ". " +mValues[position]);
             holder.mView.setOnClickListener(v -> Snackbar.make(v, getValueAt(position), Snackbar.LENGTH_SHORT).show());
         }
 
@@ -145,6 +145,7 @@ public class RestaurantListFragment extends Fragment {
                 super(itemView);
                 this.mView = itemView;
                 this.mTextview = (TextView) itemView.findViewById(android.R.id.text1);
+                mTextview.setTextColor(mContext.getResources().getColor(R.color.main_text));
             }
         }
     }

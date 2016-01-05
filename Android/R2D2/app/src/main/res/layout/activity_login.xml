@@ -5,30 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/main"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/main"
         android:gravity="center"
         android:layout_margin="@dimen/login_entire_margin"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_login_title"
+        <!--<TextView-->
+            <!--android:id="@+id/txt_login_title"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="3"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="100sp"-->
+            <!--android:textColor="@color/main_text"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:text="R2D2"/>-->
+
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:textSize="80sp"
-            android:textColor="@color/main"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp"
-            android:text="R2D2"/>
+            android:layout_weight="3"
+            android:src="@drawable/r2d2word" />
 
 
         <EditText
@@ -38,6 +44,8 @@
             android:layout_weight="1.5"
             android:padding="5dp"
             android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:textColor="@color/main_text"
             android:layout_marginBottom="10dp"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_login_background"
@@ -51,7 +59,10 @@
             android:layout_height="0dp"
             android:layout_weight="1.5"
             android:padding="5dp"
+            android:textColor="@color/main_text"
             android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:inputType="textPassword"
             android:layout_marginBottom="10dp"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_login_background"
@@ -65,8 +76,8 @@
             android:layout_weight="1.5"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/main"
-            android:textColor="@color/white"
+            android:background="@color/main_text"
+            android:textColor="@color/main"
             android:textSize="@dimen/textsize_logon_button"
             android:text="로그인"/>
 
@@ -82,8 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:background="@color/white"
-            android:textColor="@color/black"
+            android:background="@color/main"
+            android:textColor="@color/main_text"
             android:textSize="@dimen/textsize_logon_join"
             android:text="회원가입"/>
 

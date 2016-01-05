@@ -29,7 +29,7 @@ public class UserDto {
     @AllArgsConstructor
     public static class LogonResponse{
         private String email;
-        private String subwaynumber;
+        private String subwayNumber;
         private String token;
         private String status;
         private String message;
@@ -39,6 +39,7 @@ public class UserDto {
     @AllArgsConstructor
     public static class JoinResponse{
         private String userId;
+        private String subwayNumber;
         private String code;
         private String message;
     }

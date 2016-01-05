@@ -21,6 +21,28 @@ import ggikko.me.r2d2.util.ResultCodeCollections;
 
 public class PushSettingActivity extends AppCompatActivity {
 
+    NiceSpinner niceSpinner_hour;
+    NiceSpinner niceSpinner_minutes;
+    NiceSpinner niceSpinner_subway;
+
+    /**
+     * 역 설정 버튼을 누른 후 역 값을 받아온다
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode) {
+
+            /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
+            case 0: {
+                String subway = data.getStringExtra("subway");
+                niceSpinner_subway.setText(subway);
+                break;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +71,9 @@ public class PushSettingActivity extends AppCompatActivity {
     }
 
     private void spinnerSetting() {
-        NiceSpinner niceSpinner_hour = (NiceSpinner) findViewById(R.id.nice_spinner_hour);
-        NiceSpinner niceSpinner_minutes = (NiceSpinner) findViewById(R.id.nice_spinner_minutes);
-        NiceSpinner niceSpinner_subway = (NiceSpinner) findViewById(R.id.nice_spinner_subway);
+        niceSpinner_hour = (NiceSpinner) findViewById(R.id.nice_spinner_hour);
+        niceSpinner_minutes = (NiceSpinner) findViewById(R.id.nice_spinner_minutes);
+        niceSpinner_subway = (NiceSpinner) findViewById(R.id.nice_spinner_subway);
 
         /** 선택 가능한 시간 세팅 */
         List<String> dataset_hour = new LinkedList<>

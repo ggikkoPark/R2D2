@@ -1,5 +1,6 @@
 package ggikko.me.r2d2.subway;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ import ggikko.me.r2d2.R;
 public class SubwayActivty extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private String subway;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subway_actiity);
+
+        Intent intent = getIntent();
+        subway = intent.getStringExtra("subway");
 
         /** 기본 툴바 설정 및 Actionbar 셋팅 */
         Toolbar toolbar = (Toolbar) findViewById(R.id.subway_toolbar);
@@ -46,9 +51,22 @@ public class SubwayActivty extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
-                finish();
+                backToActivity();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void backToActivity() {
+        Intent intent = new Intent();
+        intent.putExtra("subway", subway);
+        setResult(0 , intent);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        backToActivity();
+  }
 }

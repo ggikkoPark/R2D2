@@ -68,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
             /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
             case 0: {
                 subwayName = data.getStringExtra("subway");
+                Log.e("ggikko", "homeactivity's subwayname = " + subwayName);
                 btn_selected_subway.setText(subwayName);
                 break;
             }
@@ -79,6 +80,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent = getIntent();
+        subwayName = intent.getStringExtra("subwayNumber");
 
         /** Toolbar 설정 */
         toolbarSetting();
@@ -94,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
 
         /** 역 설정을 위한 버튼 설정 */
         buttonSettingForSubway();
+
     }
 
     private void toolbarSetting() {
@@ -200,32 +205,56 @@ public class HomeActivity extends AppCompatActivity {
 
                     case R.id.map:
 
-                        Intent intent_map = new Intent(HomeActivity.this, MapActivity.class);
-                        startActivity(intent_map);
+                        /** 다음 화면 페이지 넘어간다(지도 화면) */
+                        goToMapActivity();
 
                         break;
 
                     case R.id.around:
 
-                        Intent intent_around = new Intent(HomeActivity.this, AroundActivity.class);
-                        startActivity(intent_around);
-
+                        /** 다음 화면 페이지 넘어간다(내 주변 맛집 화면) */
+                        goToAroundActivity();
                         break;
 
                     case R.id.push:
 
-                        Intent intent_push = new Intent(HomeActivity.this, PushSettingActivity.class);
-                        startActivity(intent_push);
-
+                        /** 다음 화면 페이지 넘어간다(푸쉬 셋팅 화면) */
+                        goToPushSettingActivity();
                         break;
 
                     case R.id.help:
 
+                        /** 이메일로 문의하도록 액션 인텐트를 취합니다 */
+                        goToHelp();
                         break;
                 }
 
                 drawerLayout.closeDrawers();
                 return true;
+            }
+
+            private void goToMapActivity() {
+                Intent intent_map = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(intent_map);
+            }
+
+            private void goToAroundActivity() {
+                Intent intent_around = new Intent(HomeActivity.this, AroundActivity.class);
+                startActivity(intent_around);
+            }
+
+            private void goToPushSettingActivity() {
+                Intent intent_push = new Intent(HomeActivity.this, PushSettingActivity.class);
+                startActivity(intent_push);
+            }
+
+            private void goToHelp() {
+                String[] email = {"ggikko2@naver.com"};
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("plain/text");
+                intent.putExtra(Intent.EXTRA_EMAIL,email);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "R2D2 관련 문의");
+                startActivity(intent);
             }
         });
     }
@@ -265,10 +294,18 @@ public class HomeActivity extends AppCompatActivity {
             RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
             Retrofit retrofit = retrofitInstance.getRestaurantList();
 
-            RestaurantDto.GetRestaurants getRestaurants = new RestaurantDto.GetRestaurants("1", token);
+            /** 임시로 역 번호로 변경 */
+            if(subwayName.contains("강남역"))subwayName = "gangnam";
+            if(subwayName.contains("역삼역"))subwayName = "yeoksam";
+            if(subwayName.contains("선릉역"))subwayName = "seolleung";
+
+            RestaurantDto.GetRestaurants getRestaurants = new RestaurantDto.GetRestaurants(subwayName, token);
             RestaurantAPI restaurantAPI = retrofit.create(RestaurantAPI.class);
 
             Call<RestaurantDto.GetRestaurantsResponse> logonCall = restaurantAPI.reqRestaurants(getRestaurants);
+
+            Log.e("ggikko", "homeactivity's subwayname2222 = " + getRestaurants.getSubwayNumber());
+            Log.e("ggikko", "homeactivity's subwayname3 = " + getRestaurants.getUserId());
 
             /** retrofit 콜백 메소드 성공시 onResponse, 실패시 onFailure */
             logonCall.enqueue(new Callback<RestaurantDto.GetRestaurantsResponse>() {
@@ -278,10 +315,7 @@ public class HomeActivity extends AppCompatActivity {
                     RestaurantDto.GetRestaurantsResponse body = response.body();
                     Log.e("ggikko", "ok");
                     if (body != null) {
-
-                        if(body.getCode() != null){
-                            Log.e("ggikko", "getRestaurant return code : " + body.getCode());
-                        }
+                        Log.e("ggikko", "body exist");
 
                         restaurantListFragment.changeListData(body);
 
@@ -293,14 +327,16 @@ public class HomeActivity extends AppCompatActivity {
                 public void onFailure(Throwable t) {
                 }
             });
-
         }
     }
+
     /**
      * 다음 화면 페이지 넘어간다(역 설정 화면)
      */
     private void goToSubwayActivity() {
         Intent intent = new Intent(HomeActivity.this, SubwayActivty.class);
+        String subway = btn_selected_subway.getText().toString();
+        intent.putExtra("subway", subway);
         startActivityForResult(intent, ResultCodeCollections.RESULTCODE_HOMEACTIVITY_SUBWAY);
     }
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/main"
     tools:context="ggikko.me.r2d2.around.AroundActivity">
 
     <!-- toolbar layout -->
@@ -53,6 +54,7 @@
             android:background="@drawable/edit_around_background"
             android:hint="1."
             android:padding="@dimen/edit_around_padding"
+            android:textColor="@color/main_text"
             android:singleLine="true"
             android:maxLength="9"
             />
@@ -63,6 +65,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="2."
@@ -86,6 +89,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="3."
@@ -99,6 +103,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="4."
@@ -122,6 +127,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="5."
@@ -135,6 +141,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="6."
@@ -158,6 +165,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="7."
@@ -172,6 +180,7 @@
             android:layout_margin="@dimen/around_edittext_margin"
             android:textColorHint="@color/edit_hint_color"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:background="@drawable/edit_around_background"
             android:hint="8."
             android:padding="@dimen/edit_around_padding"
@@ -194,6 +203,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/around_edittext_margin"
             android:layout_weight="1"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:background="@drawable/edit_around_background"
             android:hint="9."
@@ -210,6 +220,7 @@
             android:layout_weight="1"
             android:background="@drawable/edit_around_background"
             android:hint="10."
+            android:textColor="@color/main_text"
             android:padding="@dimen/edit_around_padding"
             android:singleLine="true"
             android:maxLength="9"/>
@@ -233,10 +244,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/main"
+            android:background="@color/edit_join_border"
             android:textColor="@color/white"
             android:layout_margin="5dp"
             android:textSize="@dimen/textsize_logon_button"
+
             android:text="변경하기"/>
 
     </LinearLayout>

@@ -23,6 +23,8 @@ import retrofit.Retrofit;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    private String subwayNumber;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,9 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void goToHomeActivity() {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        intent.putExtra("subwayNumber",subwayNumber);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -60,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        SharedInformation sharedInformation = SharedInformation.getInstance();
+        token = sharedInformation.getToken(LoginActivity.this);
+        subwayNumber = sharedInformation.getSubwayNumber(LoginActivity.this);
+
 
     }
 

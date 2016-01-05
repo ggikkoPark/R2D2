@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center">
 
         <ImageView
@@ -17,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/animation_splash"/>
+            android:background="@drawable/r2d2wordimage"/>
 
     </LinearLayout>
 

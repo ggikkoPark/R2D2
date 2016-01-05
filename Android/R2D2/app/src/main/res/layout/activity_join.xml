@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/main"
     android:orientation="vertical"
     tools:context="ggikko.me.r2d2.user.LoginActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/mToolbar_join"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/main_toolbar_white"
+        android:background="@color/main"
         android:subtitleTextColor="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:subtitleTextColor="@color/white"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/main_text"
             android:textSize="20sp" />
 
 
@@ -35,21 +35,28 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/join_margin_left"
         android:layout_marginRight="@dimen/join_margin_right"
-        android:background="@color/white"
+        android:background="@color/main"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_login_title"
+        <!--<TextView-->
+        <!--android:id="@+id/txt_login_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:text="R2D2"-->
+        <!--android:textColor="@color/main_text"-->
+        <!--android:textSize="60sp"-->
+        <!--android:textStyle="bold" />-->
+
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="2"
-            android:gravity="center"
-            android:text="R2D2"
-            android:textColor="@color/main"
-            android:textSize="60sp"
-            android:textStyle="bold" />
+            android:src="@drawable/r2d2word"/>
 
         <EditText
             android:id="@+id/edit_join_email"
@@ -62,7 +69,8 @@
             android:maxLength="30"
             android:padding="@dimen/edit_join_padding"
             android:singleLine="true"
-            android:textColorHint="@color/edit_hint_color"
+            android:textColor="@color/main_text"
+            android:textColorHint="@color/main_text"
             android:textSize="@dimen/edit_join_size"
             tools:text="ggikko@hotmail.com">
 
@@ -75,9 +83,9 @@
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
+            android:text="이메일이 올바르지 않습니다"
             android:textColor="@color/red"
             android:textSize="@dimen/txt_join_size"
-            android:text="이메일이 올바르지 않습니다"
             android:visibility="gone"
             tools:text="이메일이 올바르지 않습니다" />
 
@@ -90,10 +98,11 @@
             android:layout_weight="1.5"
             android:background="@drawable/edit_join_background"
             android:hint="비밀번호"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:maxLength="20"
             android:padding="@dimen/edit_join_padding"
             android:singleLine="true"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:textSize="@dimen/edit_join_size"
             tools:text="1234" />
@@ -105,9 +114,9 @@
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
+            android:text="비밀번호가 올바르지 않습니다"
             android:textColor="@color/red"
             android:textSize="@dimen/txt_join_size"
-            android:text="비밀번호가 올바르지 않습니다"
             android:visibility="gone"
             tools:text="비밀번호가 올바르지 않습니다" />
 
@@ -120,10 +129,11 @@
             android:layout_weight="1.5"
             android:background="@drawable/edit_join_background"
             android:hint="비밀번호 확인"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:maxLength="20"
             android:padding="@dimen/edit_join_padding"
             android:singleLine="true"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:textSize="@dimen/edit_join_size"
             tools:text="1234" />
@@ -135,9 +145,9 @@
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
+            android:text="비밀번호 확인이 올바르지 않습니다"
             android:textColor="@color/red"
             android:textSize="@dimen/txt_join_size"
-            android:text="비밀번호 확인이 올바르지 않습니다"
             android:visibility="gone"
             tools:text="비밀번호 확인이 올바르지 않습니다" />
 
@@ -153,6 +163,7 @@
             android:focusable="false"
             android:hint="역 선택"
             android:padding="@dimen/edit_join_padding"
+            android:textColor="@color/main_text"
             android:textColorHint="@color/edit_hint_color"
             android:textSize="@dimen/edit_join_size"
             tools:text="정자역" />
@@ -161,13 +172,13 @@
             android:id="@+id/txt_join_subway"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
+            android:text="역 설정이 올바르지 않습니다"
             android:textColor="@color/red"
             android:textSize="@dimen/txt_join_size"
-            android:layout_marginLeft="5dp"
-            android:text="역 설정이 올바르지 않습니다"
             android:visibility="gone"
-            tools:text="역 설정이 올바르지 않습니다"/>
+            tools:text="역 설정이 올바르지 않습니다" />
 
         <View
             android:layout_width="match_parent"
@@ -182,7 +193,7 @@
             android:layout_weight="1.5"
             android:background="@color/main"
             android:text="가입하기"
-            android:textColor="@color/white"
+            android:textColor="@color/main_text"
             android:textSize="@dimen/textsize_logon_button" />
 
         <View

@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#23b400</color>
-    <color name="colorPrimaryDark">#23b400</color>
-    <color name="colorAccent">#23b400</color>
+    <color name="colorPrimary">#2b2b37</color>
+    <color name="colorPrimaryDark">#2b2b37</color>
+    <color name="colorAccent">#2b2b37</color>
 
     <!-- 기본 색깔 -->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="red">#B71C1C</color>
     <color name="silver">#dfdfdf</color>
+    <color name="silver2">#757575</color>
 
 
     <!-- 주 사용되는 색깔 -->
-    <color name="main">#23b400</color>
-    <color name="main_toolbar">#23b400</color>
-    <color name="main_toolbar_white">#ffffff</color>
-    <color name="lightGray">#e0e0e0</color>
+    <color name="main">#2b2b37</color>
+    <color name="main_toolbar">#2b2b37</color>
+    <color name="main_toolbar_white">#ffcb68</color>
+    <color name="lightGray">#ffcb68</color>
+    <color name="main_text">#ffcb68</color>
 
     <!-- join activity 사용되는 색깔 -->
-    <color name="edit_join_border">#dfdfdf</color>
+    <color name="edit_join_border">#ffcb68</color>
 
     <!-- around activity 사용되는 색깔 -->
-    <color name="edit_hint_color">#dfdfdf</color>
+    <color name="edit_hint_color">#ffcb68</color>
+
+    <!-- push activity 사용되는 색깔 -->
+    <color name="push_background">#263238</color>
 
 
 </resources>

@@ -23,6 +23,7 @@ import retrofit.Retrofit;
 /**
  * 처음 애플리케이션 진입점
  * 애니메이션을 3초동안 보여주고 Home Activity 로 전환시켜준다.
+ *
  */
 public class SplashActivity extends AppCompatActivity {
 
@@ -32,13 +33,16 @@ public class SplashActivity extends AppCompatActivity {
 
     private Thread thread;
 
+    private String subwayNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         iv_splash = (ImageView) findViewById(R.id.iv_splash);
-        animation = (AnimationDrawable) iv_splash.getBackground();
+        //TODO 애니메이션을 넣었으나 이쁘지 않아서 잠시 빼두었습니다.
+//        animation = (AnimationDrawable) iv_splash.getBackground();
 
 
         threadSetting();
@@ -50,8 +54,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkLogon() {
         SharedInformation sharedInformation = SharedInformation.getInstance();
         String token = sharedInformation.getToken(SplashActivity.this);
-
-        Log.e("ggikko", "Splash activity's token" + token);
+        subwayNumber = sharedInformation.getSubwayNumber(SplashActivity.this);
 
 
         if (!token.equals("R2D2")) {
@@ -101,6 +104,7 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void goToHomeActivity() {
         Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+        intent.putExtra("subwayNumber", subwayNumber);
         startActivity(intent);
         finish();
     }
@@ -163,7 +167,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startAnimation();
+//        startAnimation();
     }
 
     /**
@@ -172,7 +176,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        stopAnimation();
+//        stopAnimation();
     }
 
     @Override

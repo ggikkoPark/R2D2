@@ -16,27 +16,63 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:contentScrim="?attr/colorPrimary"
+            android:background="@drawable/background_border"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_height="150dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/speechbubble"/>
+
+            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:background="@color/white"
-                android:layout_margin="10dp">
+                android:layout_marginLeft="85dp"
+                android:layout_marginBottom="60dp"
+                android:orientation="vertical">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/map_pointertwo" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/map_pointer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="역 설정"
+                        android:textColor="@color/main_text"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_selected_subway"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="강남역"/>
+                    android:layout_gravity="center"
+                    android:background="@drawable/edit_around_background"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="강남역"
+                    android:textColor="@color/main_text" />
 
             </LinearLayout>
 
@@ -44,14 +80,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="40dp"
                 android:background="@color/main"
-                android:layout_margin="10dp">
+                android:orientation="vertical">
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:src="@drawable/r2d2bowl" />-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:src="@drawable/r2d2spoon" />-->
+
+                <!--</LinearLayout>-->
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/r2d2_64size" />
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/r2d2icon" />
 
             </LinearLayout>
 
@@ -82,6 +138,7 @@
         android:id="@+id/tab_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

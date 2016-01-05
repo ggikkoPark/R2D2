@@ -5,22 +5,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="172dp"
+    android:layout_height="204dp"
     android:orientation="vertical"
     android:paddingTop="25dp"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/background_border"
+    android:gravity="center"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:elevation="4dp"
-        android:src="@drawable/naverlogo"
-        android:visibility="gone"
-        tools:src="@drawable/naverlogo"/>
+        android:src="@drawable/r2d2wordimage"
+        android:visibility="visible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,6 +29,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:text="강남역"
+        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
 
     <TextView
@@ -40,6 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="github.com/ggikkoPark"
+        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </RelativeLayout>
