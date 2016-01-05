@@ -16,10 +16,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class TestController {
 
     @Autowired
-    private BatchTest service;
+    private BatchTest batchTest;
+
+    @Autowired
+    private BlogDataProcessing blogDataProcessing;
 
     @RequestMapping(value = "gcm", method = GET)
     public void gcmTest() throws IOException {
-        service.test();
+        batchTest.test();
     }
+
+    @RequestMapping(value = "blog", method = GET)
+    public void getBlogData() throws IOException {
+        blogDataProcessing.getDataAndDataProcessing();
+    }
+
 }

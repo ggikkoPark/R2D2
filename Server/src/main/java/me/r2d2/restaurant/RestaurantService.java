@@ -28,13 +28,16 @@ public class RestaurantService {
     public ResponseEntity getRestaurants(RestaurantDto.GetRestaurants getRestaurants) {
 
         User existUser = userRepository.findByUserId(getRestaurants.getUserId());
+        System.out.printf("\n haha1 \n\n");
 
         /** 유저가 존재하지 않으면 */
-        if (existUser != null) {
+        if (existUser == null) {
+            System.out.printf("\n haha2 \n\n");
             BaseDto.BaseResponse logonResponse = new BaseDto.BaseResponse("false", "userId.Not.exist");
             return new ResponseEntity(logonResponse, HttpStatus.OK);
         }
 
+        System.out.printf("\n haha3 \n\n");
         Restaurant restaurants = restaurantRepository.findBySubwayNumber(getRestaurants.getSubwayNumber());
 
 

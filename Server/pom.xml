@@ -86,6 +86,13 @@
             <artifactId>json-path</artifactId>
         </dependency>
 
+        <!-- csv file reader -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
 
     <!-- Plugins-->

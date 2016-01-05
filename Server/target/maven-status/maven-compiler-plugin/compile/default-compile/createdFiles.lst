@@ -1,3 +1,6 @@
+me/r2d2/batch/SelectedRestaurant.class
+me/r2d2/batch/BlogDataProcessing.class
+me/r2d2/batch/KeywordRank.class
 me/r2d2/batch/BatchTest.class
 me/r2d2/batch/TestController.class
 me/r2d2/user/UserDto$Logon.class
