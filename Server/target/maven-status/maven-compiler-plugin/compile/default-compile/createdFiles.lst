@@ -1,6 +1,11 @@
 me/r2d2/batch/SelectedRestaurant.class
+me/r2d2/batch/GcmController.class
+me/r2d2/util/SubwayInformation.class
 me/r2d2/batch/BlogDataProcessing.class
 me/r2d2/batch/KeywordRank.class
-me/r2d2/batch/BatchTest.class
-me/r2d2/batch/TestController.class
+me/r2d2/user/PasswordWrongException.class
+me/r2d2/user/UserNotFoundException.class
+me/r2d2/batch/PushMessaging.class
+me/r2d2/batch/PushMessagingBatch.class
 me/r2d2/user/UserDto$Logon.class
+me/r2d2/user/UserDto$Login.class

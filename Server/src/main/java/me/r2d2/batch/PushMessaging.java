@@ -32,8 +32,8 @@ public class PushMessaging {
 
     public void test() throws IOException {
 
-        String message = "world";
-        String title = "hello";
+        String message = "주인님! 오늘 식사는 1.우리집만두, 2.잘차려진밥상, 3.고향집으로 가십시오!";
+        String title = "삐리삐릿!, 밥 먹을 시간!!";
 
         System.out.printf("test");
 
