@@ -54,10 +54,6 @@ public class BlogDataProcessing {
         /** 가중치를 위한 리스트 */
         ArrayList<SelectedRestaurant> restaurantses = new ArrayList<>();
 
-        for(String test : famousRestaurantNameFromCsvFile){
-            System.out.printf(test);
-        }
-
         for (int i = 0; i < 1000; i = i + 100) {
 
             if (i == 0) i = START_NUM;
@@ -75,8 +71,6 @@ public class BlogDataProcessing {
 
                 /** 블로그 데이터 */
                 String setenceFromBlog = temp.text();
-
-//                System.out.printf(setenceFromBlog);
 
                 /**  블로그 데이터 단어로 쪼개기 */
                 words = splitWords(setenceFromBlog);
@@ -122,7 +116,6 @@ public class BlogDataProcessing {
         /** x 만큼 이상이면 */
         for (int m = 6; m > 0; m--) {
             last.clear();
-            System.out.printf(m + " : m");
             getListIfCountXUpper(restaurantses, last, m);
             if (last.size() > 10) break;
         }
@@ -133,7 +126,6 @@ public class BlogDataProcessing {
             /** 랜덤 숫자를 이용하여 데이터 10개 뽑아봄 */
             for (int l : random) {
                 String s = last.get(l);
-                System.out.printf("\n" + s + " -------------- 걸러진 10개 \n");
             }
 
             /** 데이터 삽입 */
@@ -172,7 +164,7 @@ public class BlogDataProcessing {
 
         /** CSV파일을 읽어온다 */
 
-
+        /** 서버에서 구동시 절대 좌표로 파일을 불러들임 */
 //        Resource resource = resourceLoader.getResource("gangnam.csv");
 //        File file = resource.getFile();
 //        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -183,8 +175,6 @@ public class BlogDataProcessing {
 //        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 //        FileInputStream fileInputStream = new FileInputStream(path);
 //        File file = new File(path);
-
-        System.out.printf("read success");
 
         fileReader = new FileReader(new File(getClass().getClassLoader().getResource("gangnam.csv").getFile()));
 
@@ -201,7 +191,6 @@ public class BlogDataProcessing {
         /** 모든 줄의 레코드를 리스트에 담는다 */
         for (CSVRecord record : csvParser) {
             String tempRestaurantName = record.get("업소명").trim().replaceAll(" ", "").replaceAll("\\s", "");
-            System.out.printf(tempRestaurantName + "hohohoho---- \n");
             entireRestaurantName.add(tempRestaurantName);
         }
 
@@ -278,8 +267,6 @@ public class BlogDataProcessing {
             /** csv에 포함한 단어와 blog데이터 단어를 비교하여 포함하고 있으면 리스트에 더한다 */
             for (String csvWord : csvFileList) {
 
-//                System.out.printf("\n" + csvWord + "csv \n");
-//                System.out.printf("\n" + blogWord + "blog \n");
                 if (csvWord.contains(blogWord)) {
                     tempList.add(csvWord);
                 }

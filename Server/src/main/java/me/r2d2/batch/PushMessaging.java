@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 
 @Service
-public class BatchTest  {
+public class PushMessaging {
 
 
     @Autowired

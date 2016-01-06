@@ -16,14 +16,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class TestController {
 
     @Autowired
-    private BatchTest batchTest;
+    private PushMessaging pushMessaging;
 
     @Autowired
     private BlogDataProcessing blogDataProcessing;
 
     @RequestMapping(value = "gcm", method = GET)
     public void gcmTest() throws IOException {
-        batchTest.test();
+        pushMessaging.test();
     }
 
     @RequestMapping(value = "blog", method = GET)
