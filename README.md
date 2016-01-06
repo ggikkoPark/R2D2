@@ -8,8 +8,8 @@ R2D2는 블로그 또는 웹에서 제공되는 데이터를 가공하여 맛집
 + 시간 설정, 지역 설정에 따른 구체적인 알림 메세지 환경 설정 (요일은 추후 업데이트)
 
 ## Build Tool 
-+Android - gradle project
-+Server - maven proejct
++ Android - Gradle project
++ Server - Maven proejct
 
 ## 소개영상 - Youtube
 + youtube
@@ -22,7 +22,7 @@ R2D2는 블로그 또는 웹에서 제공되는 데이터를 가공하여 맛집
 + Spring Boot Framework
 + ORM : JPA, Hibernate
 + Database : MYSQL
-+ Library : lobomk, soup, gam-server, apache.commons-csv, model mapper
++ Library : Lobomk, Jsoup, Gcm-server, Apache.commons-csv, Modelmapper
 + Test : Junit, Json-path
 + Data : Seoul Public Data, Naver Open API
 
@@ -36,7 +36,7 @@ R2D2는 블로그 또는 웹에서 제공되는 데이터를 가공하여 맛집
 
 ##프로젝트 만든 과정 기록
 
-프로젝트 시작과 함께 Medium에 블로그를 만들었습니다.
+프로젝트 시작과 함께 Medium에 글을 남겼습니다.
 
 ####11. 머신러닝 WEKA 
 medium.com/@ggikko/12-machine-learning-weka-written-by-%EC%95%88%EC%A4%80%EA%B8%B8-fae95e498ed#.apdovzqjd
@@ -84,5 +84,5 @@ medium.com/@ggikko/r2d2-project-%EC%A6%90%EA%B8%B0%EB%A9%B4%EC%84%9C-%ED%95%98%E
 중간 중간에 작업했으나 블로그를 작성을 못한 부분이 많습니다. 이 부분에 대해서는 추후에 업데이트 계획 중입니다.
 
 # 만든이
-+박지홍 email : ggikko@hotmail.com
-+안준길 email : bat5545@gmail.com
++ 박지홍 email : ggikko@hotmail.com
++ 안준길 email : bat5545@gmail.com
