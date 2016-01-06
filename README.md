@@ -1,7 +1,8 @@
 ![ScreenShot](https://github.com/ggikkoPark/R2D2/blob/master/Android/R2D2/app/src/main/res/mipmap-xxxhdpi/r2d2_logo.png?raw=true)
 
-소개영상 - Youtube link : https://www.youtube.com/watch?v=lu0zsIrjAPI
-시연영상 - Youtube link : https://www.youtube.com/watch?v=awxXv3kxLCM
+##### 영상 Link
++ 소개영상 - Youtube link : https://www.youtube.com/watch?v=lu0zsIrjAPI
++ 시연영상 - Youtube link : https://www.youtube.com/watch?v=awxXv3kxLCM
 
 # R2D2
 R2D2는 웹 기반의 소프트웨어 입니다. 
