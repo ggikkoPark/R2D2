@@ -13,7 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 
 @RestController
-public class GcmController {
+public class BatchController {
 
     @Autowired
     private PushMessaging pushMessaging;
@@ -21,14 +21,22 @@ public class GcmController {
     @Autowired
     private BlogDataProcessing blogDataProcessing;
 
+    /**
+     * GCM API
+     * @throws IOException
+     */
     @RequestMapping(value = "gcm", method = GET)
     public void gcmTest() throws IOException {
         pushMessaging.test();
     }
 
+    /**
+     * blogData API
+     * @throws IOException
+     */
     @RequestMapping(value = "blog", method = GET)
     public void getBlogData() throws IOException {
-        blogDataProcessing.getDataAndDataProcessing();
+        blogDataProcessing.getDataAndDataProcessing("강남+회사+점심");
     }
 
 }

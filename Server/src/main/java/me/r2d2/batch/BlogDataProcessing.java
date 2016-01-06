@@ -46,7 +46,10 @@ public class BlogDataProcessing {
     private static String TARGET = "&target=blog";
     private static String SORT = "&sort=sim";
 
-    public void getDataAndDataProcessing() throws IOException {
+    public void getDataAndDataProcessing(String keyword) throws IOException {
+
+        /** 검색해서 가져올 키워드 지정 */
+        KEYWORD = keyword;
 
         /**음식점 데이터 가져오기 */
         List<String> famousRestaurantNameFromCsvFile = getFamousRestaurantNameFromCsvFile();
@@ -246,8 +249,8 @@ public class BlogDataProcessing {
                 .map(s -> s.replaceAll("ㅋ", ""))
                 .map(s -> s.trim())
                 .filter(s -> !(s.length() == 1))
-                .filter(s -> !s.contains("강남"))
                 .filter(s -> !s.isEmpty())
+                .filter(s -> !s.contains("강남"))
                 .filter(s -> !s.contains("점심"))
                 .filter(s -> !s.contains("회사"))
                 .collect(toList());
