@@ -1,22 +1,40 @@
 # R2D2
 R2D2는 웹 기반의 소프트웨어 입니다. 아직 개발단계에 있으며 미완성입니다.
-# What is R2D2
+
+## What is R2D2
 R2D2는 블로그 또는 웹에서 제공되는 데이터를 가공하여 맛집 정보를 제공하는 소프트웨어입니다.
 + 확장성 - 빅데이터 및 텍스트마이닝 기술을 업데이트 하여 자료 분석에 관련한 모든 분야 확장 가능 ( 예 : 영화, 데이트 장소, 호텔, 펜션, 등등)
 + 회사원 점심식사를 타겟으로 저렴한 음식점을 알림
 + 시간 설정, 지역 설정에 따른 구체적인 알림 메세지 환경 설정 (요일은 추후 업데이트)
 
-# Build Tool 
+## Build Tool 
 +Android - gradle project
 +Server - maven proejct
 
-# 소개영상 - Youtube
+## 소개영상 - Youtube
 + youtube
 
-# 소개글 - Slide Share
+## 소개글 - Slide Share
 + slide share
 
-#프로젝트 만든 과정 기록
+## 사용한 라이브러리
+#### Server
++ Spring Boot Framework
++ ORM : JPA, Hibernate
++ Database : MYSQL
++ Library : lobomk, soup, gam-server, apache.commons-csv, model mapper
++ Test : Junit, Json-path
++ Data : Seoul Public Data, Naver Open API
+
+#### Client
++ Android
++ HTTP client : Retrofit 2.0
++ Library : google support design, gson, google service, google recycler view, google card view, lombok, multidex, retro lambda 
+
+#### Language
++ Java 8
+
+##프로젝트 만든 과정 기록
 
 프로젝트 시작과 함께 Medium에 블로그를 만들었습니다.
 
