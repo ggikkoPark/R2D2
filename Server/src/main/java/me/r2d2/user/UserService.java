@@ -4,9 +4,12 @@ import me.r2d2.util.Encryption;
 import me.r2d2.util.RandomUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Random;
 
@@ -35,22 +38,27 @@ public class UserService {
 
         User user = modelMapper.map(dto, User.class);
         String email = dto.getEmail();
+        String password = dto.getPassword();
+        String deviceId = dto.getDeviceId();
 
-        /** device Id 임시 암호화 */
         Encryption encryption = new Encryption();
 
-        if(dto.getDeviceId() != null) {
-            String deviceId = encryption.base64Encode(dto.getDeviceId());
-            System.out.printf(dto.getDeviceId());
+        // TODO : Bcrypt 암호화 + Spring security
+        /** device Id 임시 암호화 */
+        if(deviceId != null) {
+            deviceId = encryption.base64Encode(deviceId);
             user.setDeviceId(deviceId);
-            System.out.printf(deviceId);
         }
+
+        /** device Id 임시 암호화 */
+        password = encryption.base64Encode(password);
 
         /** 유저가 존재할 경우 예외처리 */
         if(repository.findByEmail(email) != null){
             throw new UserDuplicatedException(email);
         }
 
+        user.setPassword(password);
         user.setUserId(RandomUtil.idGenerator());
 
         /** 가입 날짜, 업데이트 날짜 삽입 */
@@ -61,4 +69,27 @@ public class UserService {
         return repository.save(user);
     }
 
+    public ResponseEntity loginUser(UserDto.Login dto) throws UnsupportedEncodingException {
+
+        Encryption encryption = new Encryption();
+
+        String email = dto.getEmail();
+        String password = dto.getPassword();
+        User user = repository.findByEmail(email);
+
+        /** 이메일이 존재하지 않으면 */
+        if(user == null){
+            throw new UserNotFoundException(email);
+        }else {
+            /** 이메일이 존재하면 */
+            String existUserPassword = user.getPassword();
+            /** 패스워드가 일치하지 않으면 */
+            if(!password.equals(encryption.base64Decode(existUserPassword))){
+                throw new PasswordWrongException();
+            }
+        }
+
+        /** 패스워드가 일치하면 */
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

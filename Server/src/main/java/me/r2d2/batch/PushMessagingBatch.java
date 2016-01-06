@@ -15,12 +15,13 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Random;
 
+
 /**
  * Created by Park Ji Hong, ggikko.
  */
 
 @Service
-public class PushMessaging {
+public class PushMessagingBatch {
 
     private static String GCM_SERVER_KEY = "AIzaSyA5xch2jr5u3xysjjyb6jfqHCTL0U3SvRk";
 

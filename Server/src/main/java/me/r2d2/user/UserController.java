@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 
+import java.io.UnsupportedEncodingException;
+
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -53,6 +55,28 @@ public class UserController {
 
         User newUser = service.createUser(create);
         return new ResponseEntity(mapper.map(newUser, UserDto.CreateResponse.class), HttpStatus.CREATED);
+    }
+
+    /**
+     * 유저 로그인
+     * @param login
+     * @param result
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequestMapping(value = "/login", method = POST)
+    public ResponseEntity loginUser(@RequestBody @Valid UserDto.Login login, BindingResult result) throws UnsupportedEncodingException {
+
+        if(result.hasErrors()){
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("잘못된 요청입니다");
+            errorResponse.setCode("bad.request");
+            return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
+        }
+
+        ResponseEntity responseEntity = service.loginUser(login);
+
+        return responseEntity;
     }
 
     /**
@@ -97,6 +121,32 @@ public class UserController {
         errorResponse.setMessage(exception.getEmail()+ " 는 중복된 이메일 입니다");
         errorResponse.setCode("duplicated.username.exception");
         //TODO : Bad request를 줘야하지만 Retrofit이 2.0부터. Bad Request를 받으려면 따로 인터페이스를 만들어줘야해서 잠시 보류
+        return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+    }
+
+    /**
+     * 찾는 유저가 없을 때 예외 처리
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity userNotFoundExceptionHandler(UserNotFoundException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(exception.getEmail()+ " 는 존재하지 않는 이메일 입니다");
+        errorResponse.setCode("notfound.username.exception");
+        return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+    }
+
+    /**
+     * 유저는 있으나 비밀번호가 일치하지 않을 때 예외 처리
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(PasswordWrongException.class)
+    public ResponseEntity PasswordWrongExceptionHandler(PasswordWrongException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage("비밀번호가 틀렸습니다");
+        errorResponse.setCode("wrong.password.exception");
         return new ResponseEntity<>(errorResponse, HttpStatus.OK);
     }
 

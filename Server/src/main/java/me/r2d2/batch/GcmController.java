@@ -13,7 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 
 @RestController
-public class TestController {
+public class GcmController {
 
     @Autowired
     private PushMessaging pushMessaging;
