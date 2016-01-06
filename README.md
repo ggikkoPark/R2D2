@@ -1,5 +1,7 @@
 ![ScreenShot](https://github.com/ggikkoPark/R2D2/blob/master/Android/R2D2/app/src/main/res/mipmap-xxxhdpi/r2d2_logo.png?raw=true)
 
+Youtube link : https://www.youtube.com/watch?v=lu0zsIrjAPI
+
 # R2D2
 R2D2는 웹 기반의 소프트웨어 입니다. 
 
@@ -14,10 +16,10 @@ R2D2는 블로그 또는 웹에서 제공되는 데이터를 가공하여 맛집
 + Server - Maven proejct
 
 ## 소개영상 - Youtube
-+ youtube
++ youtube : https://www.youtube.com/watch?v=lu0zsIrjAPI
 
 ## 소개글 - Slide Share
-+ slide share
++ slide share : http://www.slideshare.net/jungil15/r2d2-56741046
 
 ## 사용한 라이브러리
 #### Server
