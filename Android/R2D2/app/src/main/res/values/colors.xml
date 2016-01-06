@@ -21,12 +21,15 @@
 
     <!-- join activity 사용되는 색깔 -->
     <color name="edit_join_border">#ffcb68</color>
+    <color name="progressbar">#ffcb68</color>
 
     <!-- around activity 사용되는 색깔 -->
     <color name="edit_hint_color">#ffcb68</color>
 
     <!-- push activity 사용되는 색깔 -->
-    <color name="push_background">#263238</color>
+    <color name="push_background">#004D40</color>
+
+
 
 
 </resources>

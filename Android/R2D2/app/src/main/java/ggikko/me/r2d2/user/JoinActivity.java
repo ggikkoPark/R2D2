@@ -54,10 +54,14 @@ public class JoinActivity extends AppCompatActivity {
     TextView txt_join_email, txt_join_password, txt_join_passwordcheck, txt_join_subway;
     Button btn_join;
 
+    /** 사용자 정보 */
     private String email;
     private String password;
     private String passwordCheck;
     private String subway;
+
+    /** progress bar */
+    private ProgressBar join_progressBar;
 
 
     /**
@@ -71,9 +75,11 @@ public class JoinActivity extends AppCompatActivity {
 
             /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
             case 0: {
-                String subway = data.getStringExtra("subway");
-                edit_select_subway.setText(subway);
-                break;
+                if(data !=null) {
+                    String subway = data.getStringExtra("subway");
+                    edit_select_subway.setText(subway);
+                    break;
+                }
             }
         }
     }
@@ -100,6 +106,13 @@ public class JoinActivity extends AppCompatActivity {
 
         /** 가입버튼 설정 */
         joinButtonSetting();
+
+        /** 프로그래스 바 설정 */
+        progressbarSetting();
+    }
+
+    private void progressbarSetting() {
+        join_progressBar = (ProgressBar) findViewById(R.id.join_progressBar);
     }
 
     private void toolbarSetting() {
@@ -137,6 +150,7 @@ public class JoinActivity extends AppCompatActivity {
     private void joinButtonSetting() {
         btn_join = (Button) findViewById(R.id.btn_join);
         btn_join.setOnClickListener(v -> {
+            btn_join.setTextColor(getResources().getColor(R.color.main_text));
             requestJoin(v);
         });
     }
@@ -174,10 +188,10 @@ public class JoinActivity extends AppCompatActivity {
         if (!pwdCheckIsOk) txt_join_passwordcheck.setVisibility(View.VISIBLE);
         if (!subwayCheckOK) txt_join_email.setVisibility(View.VISIBLE);
 
-        if (emailIsOk && pwdIsOk & pwdCheckIsOk & subwayCheckOK)
-
+        if (emailIsOk && pwdIsOk & pwdCheckIsOk & subwayCheckOK) {
+            join_progressBar.setVisibility(View.VISIBLE);
             getInstanceIdToken();
-        Log.e("ggikko", "gcm toke : " + gcmToken);
+        }
 
     }
 
@@ -215,6 +229,7 @@ public class JoinActivity extends AppCompatActivity {
                         SharedInformation sharedInformation = SharedInformation.getInstance();
                         sharedInformation.saveToken(JoinActivity.this, userId);
                         sharedInformation.saveSubwayNumber(JoinActivity.this, subwayNumber);
+                        join_progressBar.setVisibility(View.GONE);
                         finish();
 
                     } else {
@@ -225,6 +240,8 @@ public class JoinActivity extends AppCompatActivity {
                         //TODO : bad request 처리
                         /** 중복된 아이디 */
                         if (body.getCode().equals("duplicated.username.exception")) {
+
+                            join_progressBar.setVisibility(View.GONE);
 
                             txt_join_email.setVisibility(View.VISIBLE);
                             txt_join_email.setText(body.getMessage());
@@ -245,6 +262,8 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+
+                join_progressBar.setVisibility(View.GONE);
 
                 Snackbar snackbar = Snackbar.make(v, R.string.snack_join_servererror, Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -307,7 +326,6 @@ public class JoinActivity extends AppCompatActivity {
      */
     private void setBroadcastReceiver() {
 
-        final ProgressDialog pDialog = new ProgressDialog(this);
         mGcm_BroadcastReceiver = new BroadcastReceiver() {
 
             @Override
@@ -317,7 +335,7 @@ public class JoinActivity extends AppCompatActivity {
 
                 /** GcmToken 생성 준비중 */
                 if (action.equals(GcmPreferences.READY)) {
-                    pDialog.show();
+
                 }
 
                 /** GcmToken 생성중 */
@@ -331,7 +349,7 @@ public class JoinActivity extends AppCompatActivity {
                 if (action.equals(GcmPreferences.COMPLETE)) {
 //                    mGcm_Progressbar.setVisibility(View.GONE);
 //                    mGcm_Button.setText(getString(R.string.complete));
-                    pDialog.hide();
+
                     gcmToken = intent.getStringExtra("token");
                     Log.e("ggikko", "gcm toto : " + gcmToken);
                     requestJoinToServer(email, password, subway, btn_join);

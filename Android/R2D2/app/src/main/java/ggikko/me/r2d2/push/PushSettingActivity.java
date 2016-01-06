@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -21,9 +22,10 @@ import ggikko.me.r2d2.util.ResultCodeCollections;
 
 public class PushSettingActivity extends AppCompatActivity {
 
-    NiceSpinner niceSpinner_hour;
-    NiceSpinner niceSpinner_minutes;
-    NiceSpinner niceSpinner_subway;
+    /** Spinner */
+    NiceSpinner niceSpinner_hour, niceSpinner_minutes, niceSpinner_subway;
+    /** Button */
+    Button btn_push;
 
     /**
      * 역 설정 버튼을 누른 후 역 값을 받아온다
@@ -36,9 +38,11 @@ public class PushSettingActivity extends AppCompatActivity {
 
             /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
             case 0: {
-                String subway = data.getStringExtra("subway");
-                niceSpinner_subway.setText(subway);
-                break;
+                if(data !=null) {
+                    String subway = data.getStringExtra("subway");
+                    niceSpinner_subway.setText(subway);
+                    break;
+                }
             }
         }
     }
@@ -56,6 +60,15 @@ public class PushSettingActivity extends AppCompatActivity {
 
         /** Customizing 스피너 */
         spinnerSetting();
+
+        /** Button Setting */
+        ButtonSetting();
+
+    }
+
+    private void ButtonSetting() {
+        btn_push = (Button) findViewById(R.id.btn_push);
+        btn_push.setOnClickListener(v-> finish());
     }
 
     private void toolbarSetting() {

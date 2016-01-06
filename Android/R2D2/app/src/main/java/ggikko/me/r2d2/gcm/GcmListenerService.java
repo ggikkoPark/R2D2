@@ -48,29 +48,29 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
     /** Notification 띄어주는 클래스 */
     private void sendNotification(String title, String message) {
         Intent intent = new Intent(this, MapActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, REQUEST_CODE, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         //Bitmap
-        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        Bitmap picture2 = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.r2d2_24logo);
+        Bitmap picture2 = BitmapFactory.decodeResource(getResources(), R.drawable.r2d2icon);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.r2d2_24logo)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setAutoCancel(true)
                 .setSound(defaultSoundUri)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
+                // - EXPANDED DEFAULT
+//                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentIntent(pendingIntent);
 
         NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle(notificationBuilder);
         style.bigLargeIcon(picture)
                 .bigPicture(picture2)
-                .setBigContentTitle("")
-                .setSummaryText("test");
+                .setBigContentTitle("R2D2")
+                .setSummaryText("주인님!! 맛집 정보입니다!!");
 
         notificationBuilder.setStyle(style);
 

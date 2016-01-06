@@ -67,10 +67,11 @@ public class HomeActivity extends AppCompatActivity {
 
             /** 역 설정의 결과 받는 CODE - ResultCodeCollections.RESULTCODE_JOINACTIVITY_SUBWAY = 0 */
             case 0: {
-                subwayName = data.getStringExtra("subway");
-                Log.e("ggikko", "homeactivity's subwayname = " + subwayName);
-                btn_selected_subway.setText(subwayName);
-                break;
+                if(data != null) {
+                    subwayName = data.getStringExtra("subway");
+                    btn_selected_subway.setText(subwayName);
+                    break;
+                }
             }
         }
     }

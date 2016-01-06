@@ -103,12 +103,13 @@
                         android:id="@+id/nice_spinner_hour"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:textSize="@dimen/txt_spinner_size"
                         android:textColor="@color/silver"
                         android:backgroundTint="@color/push_background"
                         android:shadowColor="@color/push_background"
                         android:background="@color/main"
+                        android:layout_marginRight="10dp"
                         android:text="h" />
 
                     <TextView
@@ -124,12 +125,13 @@
                         android:id="@+id/nice_spinner_minutes"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:background="@color/main"
                         android:backgroundTint="@color/push_background"
                         android:shadowColor="@color/push_background"
                         android:textColor="@color/silver"
                         android:textSize="@dimen/txt_spinner_size"
+                        android:layout_marginRight="10dp"
                         android:text="m" />
 
                     <TextView
@@ -289,6 +291,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/btn_push"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

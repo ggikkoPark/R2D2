@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import ggikko.me.r2d2.R;
 
@@ -14,22 +15,31 @@ import ggikko.me.r2d2.R;
  */
 public class AroundActivity extends AppCompatActivity {
 
+    Button btn_around;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_around);
 
-        /** 툴바 세팅 */
+        /** 툴바 셋팅 : 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다. */
+        toolbarSetting();
+
+        btn_around = (Button) findViewById(R.id.btn_around);
+        btn_around.setOnClickListener(v -> {
+
+            finish();
+        });
+
+    }
+
+    private void toolbarSetting() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar_around);
         setSupportActionBar(toolbar);
-
-        /** 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다. */
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("");
-
-
     }
 
     /**

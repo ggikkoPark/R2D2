@@ -240,15 +240,14 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_around"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/edit_join_border"
-            android:textColor="@color/white"
+            android:background="@drawable/btn_selected"
+            android:textColor="@color/txt_selected"
             android:layout_margin="5dp"
             android:textSize="@dimen/textsize_logon_button"
-
             android:text="변경하기"/>
 
     </LinearLayout>

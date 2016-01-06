@@ -23,7 +23,7 @@ import retrofit.Retrofit;
 /**
  * 처음 애플리케이션 진입점
  * 애니메이션을 3초동안 보여주고 Home Activity 로 전환시켜준다.
- *
+ * 보여주는 동안 로그인이 되어있는지 체크한다
  */
 public class SplashActivity extends AppCompatActivity {
 

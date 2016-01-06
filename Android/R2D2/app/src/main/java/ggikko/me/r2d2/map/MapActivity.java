@@ -1,6 +1,5 @@
 package ggikko.me.r2d2.map;
 
-import android.app.FragmentManager;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +20,20 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
         /** 툴바 세팅 */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar_map);
-        setSupportActionBar(toolbar);
+        toolbarSetting();
 
         /** 툴바를 커스터마이징하기 위해 v7에서 제공하는 Action bar를 불러온다. */
+        actionbarSetting();
+
+
+    }
+
+    private void toolbarSetting() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar_map);
+        setSupportActionBar(toolbar);
+    }
+
+    private void actionbarSetting() {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow);
         actionBar.setDisplayHomeAsUpEnabled(true);
