@@ -3,6 +3,7 @@ package me.r2d2.restaurant;
 import me.r2d2.user.User;
 import me.r2d2.user.UserRepository;
 import me.r2d2.util.BaseDto;
+import me.r2d2.util.SubwayInformation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,37 +29,27 @@ public class RestaurantService {
     public ResponseEntity getRestaurants(RestaurantDto.GetRestaurants getRestaurants) {
 
         User existUser = userRepository.findByUserId(getRestaurants.getUserId());
-        System.out.printf("\n haha1 \n\n");
 
         /** 유저가 존재하지 않으면 */
         if (existUser == null) {
-            System.out.printf("\n haha2 \n\n");
             BaseDto.BaseResponse logonResponse = new BaseDto.BaseResponse("false", "userId.Not.exist");
             return new ResponseEntity(logonResponse, HttpStatus.OK);
         }
 
-        System.out.printf("\n haha3 \n\n");
-        Restaurant restaurants = restaurantRepository.findBySubwayNumber(getRestaurants.getSubwayNumber());
+        String subwayNumber = getRestaurants.getSubwayNumber();
 
+        /** 임시 역 설정 */
+        if(subwayNumber.equals("gangnam"))subwayNumber= SubwayInformation.GANGNAM;
+        if(subwayNumber.equals("yeoksam"))subwayNumber = SubwayInformation.YEOKSAM;
+        if(subwayNumber.equals("seolleung"))subwayNumber = SubwayInformation.SEOLLEUNG;
 
-        return new ResponseEntity(mapper.map(restaurants, RestaurantDto.Restaurants.class), HttpStatus.OK);
-    }
+        /** 맛집 정보를 가져온다 */
+        Restaurant restaurants = restaurantRepository.findOne(subwayNumber);
 
-    public void saveTestObject(){
+        /** 해당하는 역이 있으면 반환 */
+        if(restaurants !=null) return new ResponseEntity(mapper.map(restaurants, RestaurantDto.Restaurants.class), HttpStatus.OK);
 
-        Restaurant test = new Restaurant();
-        test.setSubwayNumber("1");
-        test.setRestaurant1("맥도날드");
-        test.setRestaurant2("롯데리아");
-        test.setRestaurant3("치킨");
-        test.setRestaurant4("롯데월드");
-        test.setRestaurant5("니달리");
-        test.setRestaurant6("코르키");
-        test.setRestaurant7("프로도");
-        test.setRestaurant8("케릭터");
-        test.setRestaurant9("헤헤");
-        test.setRestaurant10("하하");
-        restaurantRepository.save(test);
-
+        /** 해당하는 역이 없으면 Not Found Status */
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

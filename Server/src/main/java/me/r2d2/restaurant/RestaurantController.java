@@ -35,10 +35,8 @@ public class RestaurantController {
             return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
         }
 
-        /** 가짜데이터 한개 생성 */
-        service.saveTestObject();
-
         ResponseEntity responseEntity = service.getRestaurants(getRestaurants);
+
         return responseEntity;
     }
 

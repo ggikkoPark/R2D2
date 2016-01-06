@@ -5,8 +5,11 @@
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/util/RandomUtil.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/user/UserDto.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/user/UserDuplicatedException.java
+/Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/batch/BlogDataProcessing.java
+/Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/batch/SelectedRestaurant.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/batch/TestController.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/util/BaseDto.java
+/Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/batch/KeywordRank.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/util/Encryption.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/restaurant/RestaurantRepository.java
 /Users/parkjihong/Documents/workspace/practice/R2D2/R2D2/Server/src/main/java/me/r2d2/util/DateUtil.java

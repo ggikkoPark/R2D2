@@ -1,8 +1,10 @@
 package me.r2d2.restaurant;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,11 +13,11 @@ import javax.persistence.Id;
  */
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Restaurant {
 
     @Id
+    @Column(name = "subway_number")
     private String subwayNumber;
 
     /** 맛집 1 */

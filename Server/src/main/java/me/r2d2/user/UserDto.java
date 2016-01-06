@@ -43,6 +43,7 @@ public class UserDto {
     public static class CreateResponse{
 
         private String userId;
+        private String subwayNumber;
         private String code;
         private String message;
 

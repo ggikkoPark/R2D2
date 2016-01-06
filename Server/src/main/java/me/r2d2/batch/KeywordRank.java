@@ -14,6 +14,5 @@ public class KeywordRank {
     private String keyword;
     private int count;
 
-
 }
 

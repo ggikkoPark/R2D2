@@ -15,6 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
@@ -75,7 +76,7 @@ public class BlogDataProcessing {
                 /** 블로그 데이터 */
                 String setenceFromBlog = temp.text();
 
-                System.out.printf(setenceFromBlog);
+//                System.out.printf(setenceFromBlog);
 
                 /**  블로그 데이터 단어로 쪼개기 */
                 words = splitWords(setenceFromBlog);
@@ -127,29 +128,29 @@ public class BlogDataProcessing {
         }
 
         /** 랜덤으로 원하는 사이즈 만큼 크기에 맞게 랜덤 숫자를 가져옴 */
-        int[] random = getRandom(last, 10);
+        if(last.size()>0) {
+            int[] random = getRandom(last, 10);
+            /** 랜덤 숫자를 이용하여 데이터 10개 뽑아봄 */
+            for (int l : random) {
+                String s = last.get(l);
+                System.out.printf("\n" + s + " -------------- 걸러진 10개 \n");
+            }
 
-        /** 랜덤 숫자를 이용하여 데이터 10개 뽑아봄 */
-        for (int l : random) {
-            String s = last.get(l);
-            System.out.printf("\n" + s + " -------------- 걸러진 10개 \n");
+            /** 데이터 삽입 */
+            Restaurant restaurant = new Restaurant();
+            restaurant.setSubwayNumber("강남역");
+            restaurant.setRestaurant1(last.get(random[0]));
+            restaurant.setRestaurant2(last.get(random[1]));
+            restaurant.setRestaurant3(last.get(random[2]));
+            restaurant.setRestaurant4(last.get(random[3]));
+            restaurant.setRestaurant5(last.get(random[4]));
+            restaurant.setRestaurant6(last.get(random[5]));
+            restaurant.setRestaurant7(last.get(random[6]));
+            restaurant.setRestaurant8(last.get(random[7]));
+            restaurant.setRestaurant9(last.get(random[8]));
+            restaurant.setRestaurant10(last.get(random[9]));
+            restaurantRepository.save(restaurant);
         }
-
-        /** 데이터 삽입 */
-        Restaurant restaurant = new Restaurant();
-        restaurant.setSubwayNumber("선릉역");
-        restaurant.setRestaurant1(last.get(random[0]));
-        restaurant.setRestaurant2(last.get(random[1]));
-        restaurant.setRestaurant3(last.get(random[2]));
-        restaurant.setRestaurant4(last.get(random[3]));
-        restaurant.setRestaurant5(last.get(random[4]));
-        restaurant.setRestaurant6(last.get(random[5]));
-        restaurant.setRestaurant7(last.get(random[6]));
-        restaurant.setRestaurant8(last.get(random[7]));
-        restaurant.setRestaurant9(last.get(random[8]));
-        restaurant.setRestaurant10(last.get(random[9]));
-        restaurantRepository.save(restaurant);
-
     }
 
     /**
@@ -178,16 +179,16 @@ public class BlogDataProcessing {
 
 //        fileReader = new FileReader(file);
 
-        String path = "/root/gangnam.csv";
-//        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF8"));
+//        String path = "/root/gangnam.csv";
+//        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 //        FileInputStream fileInputStream = new FileInputStream(path);
-        File file = new File(path);
+//        File file = new File(path);
 
         System.out.printf("read success");
 
-//        fileReader = new FileReader(new File(getClass().getClassLoader().getResource("gangnam.csv").getFile()));
+        fileReader = new FileReader(new File(getClass().getClassLoader().getResource("gangnam.csv").getFile()));
 
-        fileReader = new FileReader(file);
+//        fileReader = new FileReader(file);
         /** CSV파일 파서에 파일 헤더 맵핑과 구분자 포맷을 설정해준다 */
         csvParser = new CSVParser(fileReader, csvFormat);
 //        csvParser = new CSVParser(inputStreamReader, csvFormat);
@@ -200,6 +201,7 @@ public class BlogDataProcessing {
         /** 모든 줄의 레코드를 리스트에 담는다 */
         for (CSVRecord record : csvParser) {
             String tempRestaurantName = record.get("업소명").trim().replaceAll(" ", "").replaceAll("\\s", "");
+            System.out.printf(tempRestaurantName + "hohohoho---- \n");
             entireRestaurantName.add(tempRestaurantName);
         }
 
@@ -215,7 +217,8 @@ public class BlogDataProcessing {
         String requestURL = REQUEST_URL + API_KEY + QUERY + KEYWORD + DISPLAY + DISPLAY_NUM + START + String.valueOf(i) + TARGET + SORT;
 
         /** URL 로 요청 HTML 페이지 가져온다 */
-        Document document = Jsoup.connect(requestURL).get();
+        Document document = Jsoup.parse(new URL(requestURL).openStream(), "UTF8", requestURL);
+//                .connect(requestURL).get();
 
         /** XML 태그에 맞게 타이틀만 가져온다 */
         return document.select("rss").select("channel").select("item").select("title");
@@ -254,7 +257,7 @@ public class BlogDataProcessing {
                 .map(s -> s.replaceAll("ㅋ", ""))
                 .map(s -> s.trim())
                 .filter(s -> !(s.length() == 1))
-                .filter(s -> !s.contains("선릉"))
+                .filter(s -> !s.contains("강남"))
                 .filter(s -> !s.isEmpty())
                 .filter(s -> !s.contains("점심"))
                 .filter(s -> !s.contains("회사"))
@@ -275,8 +278,8 @@ public class BlogDataProcessing {
             /** csv에 포함한 단어와 blog데이터 단어를 비교하여 포함하고 있으면 리스트에 더한다 */
             for (String csvWord : csvFileList) {
 
-                System.out.printf("\n" + csvWord + "csv \n");
-                System.out.printf("\n" + blogWord + "blog \n");
+//                System.out.printf("\n" + csvWord + "csv \n");
+//                System.out.printf("\n" + blogWord + "blog \n");
                 if (csvWord.contains(blogWord)) {
                     tempList.add(csvWord);
                 }
@@ -444,8 +447,8 @@ public class BlogDataProcessing {
     /**
      * 원하는 리스트와 사이즈를 넣으면 랜덤으로 수를 뽑아낸다.
      */
-    private static int[] getRandom(List list, int lastSize) {
-        Random random = new Random();
+    private int[] getRandom(List list, int lastSize) {
+
         /** 리스트의 사이즈 개수 */
         int size = list.size();
 
@@ -453,12 +456,12 @@ public class BlogDataProcessing {
         int a[] = new int[lastSize];
 
         /** 랜덤 객체 생성 */
-        Random r = new Random();
+        Random random = new Random();
 
         /** 원하는 개수 만큼 뽑기 위한 for문 */
         for (int i = 0; i < lastSize; i++) {
             /** 0 ~ 원하는 크기 만큼의 숫자를 뽑음 */
-            a[i] = r.nextInt(size);
+            a[i] = random.nextInt(size);
 
             /** 중복제거를 위한 for문 */
             for (int j = 0; j < i; j++) {
