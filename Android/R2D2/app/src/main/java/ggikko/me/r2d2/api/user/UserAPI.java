@@ -27,4 +27,12 @@ public interface UserAPI {
     @POST("logon")
     Call<BaseDto.BaseResponse> reqLogon(@Body UserDto.Logon reqLogon);
 
+    /**
+     * 로그인 요청 API 인터페이스
+     * @param reqLogin
+     * @return
+     */
+    @POST("logon")
+    Call<UserDto.LoginResponse> reqLogin(@Body UserDto.Login reqLogin);
+
 }

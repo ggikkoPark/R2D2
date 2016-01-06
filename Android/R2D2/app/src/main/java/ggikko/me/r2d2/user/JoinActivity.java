@@ -27,6 +27,7 @@ import ggikko.me.r2d2.api.user.UserAPI;
 import ggikko.me.r2d2.domain.UserDto;
 import ggikko.me.r2d2.gcm.GcmPreferences;
 import ggikko.me.r2d2.gcm.RegisterationIntentService;
+import ggikko.me.r2d2.home.HomeActivity;
 import ggikko.me.r2d2.subway.SubwayActivty;
 import ggikko.me.r2d2.util.JoinValidators;
 import ggikko.me.r2d2.util.ResultCodeCollections;
@@ -230,6 +231,8 @@ public class JoinActivity extends AppCompatActivity {
                         sharedInformation.saveToken(JoinActivity.this, userId);
                         sharedInformation.saveSubwayNumber(JoinActivity.this, subwayNumber);
                         join_progressBar.setVisibility(View.GONE);
+                        Intent intent = new Intent(JoinActivity.this, HomeActivity.class);
+                        intent.putExtra("subwayNumber", subwayNumber);
                         finish();
 
                     } else {

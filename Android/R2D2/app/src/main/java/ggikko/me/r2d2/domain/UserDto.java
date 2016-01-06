@@ -24,17 +24,9 @@ public class UserDto {
         private String deviceId;
     }
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class LogonResponse{
-        private String email;
-        private String subwayNumber;
-        private String token;
-        private String status;
-        private String message;
-    }
-
+    /**
+     * 회원가입 응답 객체
+     */
     @Data
     @AllArgsConstructor
     public static class JoinResponse{
@@ -52,6 +44,41 @@ public class UserDto {
     public static class Logon{
         private String userId;
     }
+
+    /**
+     * 로그온 응답 객체
+     */
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class LogonResponse{
+        private String email;
+        private String subwayNumber;
+        private String token;
+        private String status;
+        private String message;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class Login{
+        private String email;
+        private String password;
+    }
+
+    /**
+     * 회원가입 응답 객체
+     */
+    @Data
+    @AllArgsConstructor
+    public static class LoginResponse{
+        private String userId;
+        private String subwayNumber;
+        private String code;
+        private String message;
+    }
+
+
 
 
 

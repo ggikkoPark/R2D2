@@ -13,7 +13,7 @@ public interface RestaurantAPI {
 
 
     /**
-     * 맛집 불러오는 API 인터페이스
+     * 맛집 요청 API 인터페이스
      * @param getRestaurants
      * @return
      */

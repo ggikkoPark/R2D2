@@ -1,3 +1,5 @@
+![ScreenShot](https://github.com/ggikkoPark/R2D2/blob/master/Android/R2D2/app/src/main/res/mipmap-xxxhdpi/r2d2_logo.png?raw=true)
+
 # R2D2
 R2D2는 웹 기반의 소프트웨어 입니다. 
 

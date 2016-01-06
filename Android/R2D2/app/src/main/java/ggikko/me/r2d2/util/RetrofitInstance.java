@@ -3,6 +3,7 @@ package ggikko.me.r2d2.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import ggikko.me.r2d2.deserializer.LoginDeserializer;
 import ggikko.me.r2d2.deserializer.LogonDeserializer;
 import ggikko.me.r2d2.deserializer.RestaurantsDeserializer;
 import ggikko.me.r2d2.deserializer.UserDeserializer;
@@ -32,6 +33,19 @@ public class RetrofitInstance {
     public Retrofit getJoinRetrofit() {
 
         Gson gson = new GsonBuilder().registerTypeAdapter(UserDto.Create.class, new UserDeserializer()).create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(UrlInformation.URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        return retrofit;
+    }
+
+    /** 로그인 할 때 사용하는 retrofit */
+    public Retrofit getLoginRetrofit() {
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(UserDto.Login.class, new LoginDeserializer()).create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(UrlInformation.URL)
