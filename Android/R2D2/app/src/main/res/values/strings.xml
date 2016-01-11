@@ -23,4 +23,10 @@
     <string name="snack_join_fail">가입에 실패하였습니다.</string>
     <string name="snack_join_servererror">일시적인 서버 오류가 발생하였습니다. 재시도 해주세요.</string>
 
+    <!-- 로그인 화면 -->
+    <string name="snack_login_success">접속에 성공하였습니다.</string>
+    <string name="snack_login_fail">접속에 실패하였습니다.</string>
+    <string name="snack_login_servererror">일시적인 서버 오류가 발생하였습니다. 재시도 해주세요.</string>
+
+
 </resources>

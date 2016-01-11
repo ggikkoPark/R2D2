@@ -69,10 +69,11 @@ public class UserDto {
     public static class Login{
         private String email;
         private String password;
+        private String deviceId;
     }
 
     /**
-     * 회원가입 응답 객체
+     * 로그인 응답 객체
      */
     @Data
     @AllArgsConstructor

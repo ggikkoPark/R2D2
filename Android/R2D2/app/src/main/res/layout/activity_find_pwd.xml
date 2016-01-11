@@ -37,6 +37,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <!--  이름 입력을 받는 Edit Text -->
         <EditText
             android:id="@+id/edit_findpwd_name"
             android:layout_width="match_parent"
@@ -52,6 +53,7 @@
             android:layout_marginBottom="20dp"
             android:textSize="15dp" />
 
+        <!--  이메일 입력을 받는 Edit Text -->
         <EditText
             android:id="@+id/edit_findpwd_email"
             android:layout_width="match_parent"
@@ -89,6 +91,7 @@
             android:layout_weight="1"
             android:background="@drawable/background_border" />
 
+        <!--  이메일, 비밀번호를 전송하는 버튼 -->
         <Button
             android:id="@+id/btn_findpwd_request"
             android:layout_width="match_parent"

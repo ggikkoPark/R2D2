@@ -159,7 +159,6 @@ public class JoinActivity extends AppCompatActivity {
     /**
      * 각 데이터 유효성 검사함
      * 검사가 통과되면 서버에 로그인 요청
-     *
      * @param v
      */
     private void requestJoin(View v) {
@@ -219,7 +218,8 @@ public class JoinActivity extends AppCompatActivity {
 
                 if (body != null) {
 
-                    if (body.getUserId() != null) {
+                    if (response.isSuccess()) {
+
 
                         Snackbar snackbar = Snackbar.make(v, R.string.snack_join_success, Snackbar.LENGTH_LONG);
                         snackbar.show();
@@ -255,13 +255,6 @@ public class JoinActivity extends AppCompatActivity {
                     }
                 }
             }
-
-
-            /** 상태 코드가 CREATED 이면 */
-            private boolean statusIsCreated(int code) {
-                return code == 201;
-            }
-
 
             @Override
             public void onFailure(Throwable t) {
@@ -342,22 +335,12 @@ public class JoinActivity extends AppCompatActivity {
                 }
 
                 /** GcmToken 생성중 */
-                if (action.equals(GcmPreferences.GENERATING)) {
-//                    mGcm_Progressbar.setVisibility(View.VISIBLE);
-//                    mGcm_textview.setVisibility(View.VISIBLE);
-//                    mGcm_textview.setText(getString(R.string.generating));
-                }
+                if (action.equals(GcmPreferences.GENERATING)) { }
 
                 /** GcmToken 생성 완료 */
                 if (action.equals(GcmPreferences.COMPLETE)) {
-//                    mGcm_Progressbar.setVisibility(View.GONE);
-//                    mGcm_Button.setText(getString(R.string.complete));
-
                     gcmToken = intent.getStringExtra("token");
-                    Log.e("ggikko", "gcm toto : " + gcmToken);
                     requestJoinToServer(email, password, subway, btn_join);
-
-//                    mGcm_textview.setText(token);
                 }
             }
         };
@@ -376,10 +359,11 @@ public class JoinActivity extends AppCompatActivity {
                 new IntentFilter(GcmPreferences.GENERATING));
         LocalBroadcastManager.getInstance(this).registerReceiver(mGcm_BroadcastReceiver,
                 new IntentFilter(GcmPreferences.COMPLETE));
+
     }
 
     /**
-     * Pause상태 시 LocalBroadCast삭제
+     * Pause상태 시 LocalBroadCast 등록해지
      */
     @Override
     protected void onPause() {

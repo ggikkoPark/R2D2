@@ -44,7 +44,6 @@ public class SplashActivity extends AppCompatActivity {
         //TODO 애니메이션을 넣었으나 이쁘지 않아서 잠시 빼두었습니다.
 //        animation = (AnimationDrawable) iv_splash.getBackground();
 
-
         threadSetting();
 
         thread.start();
@@ -55,7 +54,6 @@ public class SplashActivity extends AppCompatActivity {
         SharedInformation sharedInformation = SharedInformation.getInstance();
         String token = sharedInformation.getToken(SplashActivity.this);
         subwayNumber = sharedInformation.getSubwayNumber(SplashActivity.this);
-
 
         if (!token.equals("R2D2")) {
 
@@ -73,7 +71,6 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Response<BaseDto.BaseResponse> response, Retrofit retrofit) {
                     BaseDto.BaseResponse body = response.body();
-                    Log.e("ggikko", "ok");
                     if (body != null) {
                         String code = body.getCode();
                         if (code != null) {
