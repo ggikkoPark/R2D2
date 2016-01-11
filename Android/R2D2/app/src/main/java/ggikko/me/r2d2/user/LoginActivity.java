@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.squareup.okhttp.ResponseBody;
 
 import ggikko.me.r2d2.R;
 import ggikko.me.r2d2.api.user.UserAPI;
@@ -114,27 +115,35 @@ public class LoginActivity extends AppCompatActivity {
         email = edit_login_email.getText().toString();
         password = edit_login_password.getText().toString();
 
+        /** 이메일 & 패스워드 유효성 검사 */
         JoinValidators validators = new JoinValidators();
-
         emailIsOk = validators.checkEmail(email);
         pwdIsOk = validators.checkPassword(password);
 
+        /** 유효성 검사를 통과하지 못하는 부분 명시 */
         if (!emailIsOk) txt_login_email.setVisibility(View.VISIBLE);
         if (!pwdIsOk) txt_login_password.setVisibility(View.VISIBLE);
 
+        /** 유효성 검사 통과 후 로그인 */
         if (emailIsOk && pwdIsOk) {
             login_progressBar.setVisibility(View.VISIBLE);
+            Log.e("ggikko", "test1");
             getInstanceIdToken();
         }
 
     }
 
-    /** 토큰을 얻어온다 */
+    /**
+     * 토큰을 얻어온다
+     */
     public void getInstanceIdToken() {
+        Log.e("ggikko", "test2");
         if (checkPlayServices()) {
-            // Start IntentService to register this application with GCM.
+            Log.e("ggikko", "test4");
             Intent intent = new Intent(LoginActivity.this, RegisterationIntentService.class);
             startService(intent);
+        } else {
+            //TODO : 구글 play service 가 불가능한 상황 분리
         }
     }
 
@@ -142,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
      * 구글 서비스 환경 체크
      */
     private boolean checkPlayServices() {
+        Log.e("ggikko", "test3");
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(LoginActivity.this);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
@@ -207,6 +217,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 /** GcmToken 생성 완료 */
                 if (action.equals(GcmPreferences.COMPLETE)) {
+                    Log.e("ggikko", "test5");
                     gcmToken = intent.getStringExtra("token");
                     requestLoginToServer(email, password, gcmToken);
                 }
@@ -214,7 +225,10 @@ public class LoginActivity extends AppCompatActivity {
         };
     }
 
-    private void requestLoginToServer(String email, String password, String gcmToken){
+    /**
+     * 서버에 로그인 요청을 한다
+     */
+    private void requestLoginToServer(String email, String password, String gcmToken) {
 
         /** 로그인 retrofit을 구해온다 */
         RetrofitInstance retrofitInstance = RetrofitInstance.getInstance();
@@ -232,45 +246,63 @@ public class LoginActivity extends AppCompatActivity {
 
                 UserDto.LoginResponse body = response.body();
 
-                if (body != null) {
+                Log.e("ggikko", "test6");
 
-                    if (response.isSuccess()) {
+                Log.e("ggikko", "test7");
 
-                        Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_success, Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                if (response.isSuccess()) {
+                    Log.e("ggikko", "test8");
 
-                        /** status code가 200, 201 - 성공시 토큰 저장 및 페이지 넘김 */
-                        String userId = body.getUserId();
-                        String subwayNumber = body.getSubwayNumber();
-                        SharedInformation sharedInformation = SharedInformation.getInstance();
-                        sharedInformation.saveToken(LoginActivity.this, userId);
-                        sharedInformation.saveSubwayNumber(LoginActivity.this, subwayNumber);
+                    Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_success, Snackbar.LENGTH_LONG);
+                    snackbar.show();
+
+                    /** status code가 200, 201 - 성공시 토큰 저장 및 페이지 넘김 */
+                    Log.e("ggikko", "status code : 200");
+                    String userId = body.getUserId();
+                    String subwayNumber = body.getSubwayNumber();
+                    SharedInformation sharedInformation = SharedInformation.getInstance();
+                    sharedInformation.saveToken(LoginActivity.this, userId);
+                    sharedInformation.saveSubwayNumber(LoginActivity.this, subwayNumber);
+                    login_progressBar.setVisibility(View.GONE);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("subwayNumber", subwayNumber);
+                    finish();
+
+                } else {
+                    Log.e("ggikko", "test9");
+
+                    /** status code가 400, 401, 403, etc */
+                    /** 중복된 아이디 */
+                    int statusCode = response.code();
+
+                    login_progressBar.setVisibility(View.GONE);
+                    if (statusCode == 404) {
+                        /** 이메일을 찾지 못할 때 */
                         login_progressBar.setVisibility(View.GONE);
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        intent.putExtra("subwayNumber", subwayNumber);
-                        finish();
-
-                    } else {
-
-                        /** status code가 400, 401, 403, etc */
-                        /** 중복된 아이디 */
-                        if (body.getCode().equals("duplicated.username.exception")) {
-
-                            login_progressBar.setVisibility(View.GONE);
-                            txt_login_email.setVisibility(View.VISIBLE);
-                            txt_login_email.setText(body.getMessage());
-                            Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_fail, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                        }
+                        txt_login_email.setVisibility(View.VISIBLE);
+                        txt_login_password.setVisibility(View.GONE);
+                        Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_notfound, Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    } else if (statusCode == 406) {
+                        /** 비밀번호가 틀렸을 때 */
+                        login_progressBar.setVisibility(View.GONE);
+                        txt_login_email.setVisibility(View.GONE);
+                        txt_login_password.setVisibility(View.VISIBLE);
+                        Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_notacceptable, Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-
+                Log.e("ggikko", "test11");
                 login_progressBar.setVisibility(View.GONE);
 
+            }
+
+            /** 서버 연동에 실패하였을 경우 */
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("ggikko", "test10");
+                login_progressBar.setVisibility(View.GONE);
                 Snackbar snackbar = Snackbar.make(btn_login, R.string.snack_login_servererror, Snackbar.LENGTH_LONG);
                 snackbar.show();
             }

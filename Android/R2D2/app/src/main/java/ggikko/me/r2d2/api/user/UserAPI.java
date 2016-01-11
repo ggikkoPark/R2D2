@@ -32,7 +32,7 @@ public interface UserAPI {
      * @param reqLogin
      * @return
      */
-    @POST("logon")
+    @POST("login")
     Call<UserDto.LoginResponse> reqLogin(@Body UserDto.Login reqLogin);
 
     /**

@@ -82,8 +82,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent = getIntent();
-        subwayName = intent.getStringExtra("subwayNumber");
+        /** 전 페이지로부터 첫 번째로 보여줄 지하철 역을 받는다 */
+        getSubwayNumberFromBeforePage();
 
         /** Toolbar 설정 */
         toolbarSetting();
@@ -100,6 +100,11 @@ public class HomeActivity extends AppCompatActivity {
         /** 역 설정을 위한 버튼 설정 */
         buttonSettingForSubway();
 
+    }
+
+    private void getSubwayNumberFromBeforePage() {
+        Intent intent = getIntent();
+        subwayName = intent.getStringExtra("subwayNumber");
     }
 
     private void toolbarSetting() {

@@ -80,8 +80,6 @@ public class UserDto {
     public static class LoginResponse{
         private String userId;
         private String subwayNumber;
-        private String code;
-        private String message;
     }
 
     /**
