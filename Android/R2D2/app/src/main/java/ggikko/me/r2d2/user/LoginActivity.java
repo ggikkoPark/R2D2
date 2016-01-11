@@ -32,10 +32,22 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button btn_login = (Button) findViewById(R.id.btn_login);
+        Button btn_goto_findpwd = (Button) findViewById(R.id.btn_goto_findpwd);
+
         btn_login.setOnClickListener(v -> goToHomeActivity());
 
         Button btn_goto_join = (Button) findViewById(R.id.btn_goto_join);
         btn_goto_join.setOnClickListener(v -> goToJoinActivity());
+        btn_goto_findpwd.setOnClickListener(v -> goToFindPwdActivity());
+    }
+
+
+    /**
+     * 다음 화면 페이지 넘어간다(비밀번호 찾기 화면)
+     */
+    private void goToFindPwdActivity() {
+        Intent intent = new Intent(LoginActivity.this, FindPwdActivity.class);
+        startActivity(intent);
     }
 
     /**

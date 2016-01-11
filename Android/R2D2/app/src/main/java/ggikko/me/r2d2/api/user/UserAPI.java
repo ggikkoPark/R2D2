@@ -11,7 +11,7 @@ import retrofit.http.POST;
  */
 public interface UserAPI {
 
-    /**
+    /**6
      * 가입 API 인터페이스
      * @param createUser
      * @return
@@ -34,5 +34,13 @@ public interface UserAPI {
      */
     @POST("logon")
     Call<UserDto.LoginResponse> reqLogin(@Body UserDto.Login reqLogin);
+
+    /**
+     * 비밀번호 찾기 요청 API 인터페이스
+     * @param reqFindpassword
+     * @return
+     */
+    @POST("users/findpassword")
+    Call<UserDto.FindPasswordResponse> reqFindPassword(@Body UserDto.FindPassword reqFindpassword);
 
 }

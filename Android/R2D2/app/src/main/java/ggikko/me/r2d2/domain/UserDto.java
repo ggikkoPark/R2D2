@@ -14,10 +14,12 @@ import lombok.Setter;
  */
 public class UserDto {
 
+    /**
+     * 회원가입 요청 객체
+     */
     @Data
     @AllArgsConstructor
     public static class Create {
-
         private String email;
         private String password;
         private String subwayNumber;
@@ -37,7 +39,7 @@ public class UserDto {
     }
 
     /**
-     *  token 로그인
+     *  token 로그인 요청 객체
      */
     @Data
     @AllArgsConstructor
@@ -59,6 +61,9 @@ public class UserDto {
         private String message;
     }
 
+    /**
+     * 로그인 요청 객체
+     */
     @Data
     @AllArgsConstructor
     public static class Login{
@@ -78,8 +83,27 @@ public class UserDto {
         private String message;
     }
 
+    /**
+     * 비밀번호 찾기 응답 객체
+     */
+    @Data
+    @AllArgsConstructor
+    public static class FindPassword{
+        private String userId;
+        private String subwayNumber;
+        private String code;
+        private String message;
+    }
 
-
+    /**
+     * 비밀번호 찾기 응답 객체
+     */
+    @Data
+    @AllArgsConstructor
+    public static class FindPasswordResponse{
+        private String code;
+        private String message;
+    }
 
 
 }

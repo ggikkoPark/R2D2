@@ -18,13 +18,11 @@
     <dimen name="edit_logon_size">15sp</dimen>
 
 
-
     <!-- 회원가입 부분 -->
     <dimen name="join_margin_left">30dp</dimen>
     <dimen name="join_margin_right">30dp</dimen>
     <dimen name="edit_join_size">15sp</dimen>
     <dimen name="edit_join_padding">10dp</dimen>
-
 
 
     <!-- 리스트 부분-->
