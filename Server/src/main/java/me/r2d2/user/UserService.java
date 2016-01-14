@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by Park Ji Hong, ggikko.
@@ -34,24 +31,22 @@ public class UserService {
      * @param dto
      * @return
      */
-    public User createUser(UserDto.Create dto) {
+    public User createUser(UserDto.Create dto) throws Exception {
 
         User user = modelMapper.map(dto, User.class);
         String email = dto.getEmail();
         String password = dto.getPassword();
         String deviceId = dto.getDeviceId();
 
-        Encryption encryption = new Encryption();
-
         // TODO : Bcrypt 암호화 + Spring security
         /** device Id 임시 암호화 */
         if(deviceId != null) {
-            deviceId = encryption.base64Encode(deviceId);
+            deviceId = Encryption.seedEncode(deviceId);
             user.setDeviceId(deviceId);
         }
 
         /** device Id 임시 암호화 */
-        password = encryption.base64Encode(password);
+        password = Encryption.encryptOnly(password);
 
         /** 유저가 존재할 경우 예외처리 */
         if(repository.findByEmail(email) != null){
@@ -69,9 +64,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public ResponseEntity loginUser(UserDto.Login dto) throws UnsupportedEncodingException {
-
-        Encryption encryption = new Encryption();
+    public ResponseEntity loginUser(UserDto.Login dto) throws Exception {
 
         String email = dto.getEmail();
         String password = dto.getPassword();
@@ -83,13 +76,30 @@ public class UserService {
         }else {
             /** 이메일이 존재하면 */
             String existUserPassword = user.getPassword();
+
+            // TODO : Spring security
             /** 패스워드가 일치하지 않으면 */
-            if(!password.equals(encryption.base64Decode(existUserPassword))){
+            if(!password.equals(Encryption.seedDecode(existUserPassword))){
                 throw new PasswordWrongException();
             }
         }
 
+        String deviceId = dto.getDeviceId();
+        if(deviceId!=null) {
+            if (!user.getDeviceId().equals(Encryption.seedDecode(deviceId))) {
+                user.setDeviceId(Encryption.seedEncode(deviceId));
+                System.out.printf("ttttttt\n\n");
+            }
+        }else{
+            System.out.printf("deviceIdNull\n\n");
+        }
+
+        User newUser = repository.save(user);
+        System.out.printf("ttttttt\n\n");
+        System.out.printf(newUser.getDeviceId());
+        System.out.printf("ttttttt\n\n");
+
         /** 패스워드가 일치하면 */
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(modelMapper.map(newUser, UserDto.LoginResponse.class), HttpStatus.OK);
     }
 }

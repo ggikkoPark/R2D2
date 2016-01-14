@@ -92,7 +92,19 @@
             <artifactId>commons-csv</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.6</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc41</artifactId>
+            <version>4.1</version>
+        </dependency>
+
+        <!--install:install-file -Dfile=libs/kr.cipher-1.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc41 -Dversion=4.1 -Dpackaging=jar-->
     </dependencies>
 
     <!-- Plugins-->

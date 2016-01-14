@@ -6,7 +6,7 @@ import com.google.android.gcm.server.Sender;
 import me.r2d2.restaurant.RestaurantRepository;
 import me.r2d2.user.User;
 import me.r2d2.user.UserRepository;
-import me.r2d2.util.Encryption;
+import me.r2d2.util.Encryption2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class PushMessaging {
         List<User> all = userRepository.findAll();
         final Message.Builder messagebuilder = new Message.Builder();
 
-        Encryption encryption = new Encryption();
+        Encryption2 encryption = new Encryption2();
 
         for(User user : all){
 

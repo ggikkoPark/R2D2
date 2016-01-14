@@ -159,7 +159,7 @@ public class BlogDataProcessing {
         /** CSV Parser */
         CSVParser csvParser = null;
 
-        //CSV파일에 맵핑될 Header를 정의해준다.
+        /** CSV파일에 맵핑될 Header를 정의해준다. */
         final String[] FILE_HEADER_MAPPING = {"연번", "업소명", "지번"};
 
         /** CSVFormat */
@@ -210,15 +210,15 @@ public class BlogDataProcessing {
 
         /** URL 로 요청 HTML 페이지 가져온다 */
         Document document = Jsoup.parse(new URL(requestURL).openStream(), "UTF8", requestURL);
-//                .connect(requestURL).get();
+
 
         /** XML 태그에 맞게 타이틀만 가져온다 */
         return document.select("rss").select("channel").select("item").select("title");
+
+//                .connect(requestURL).get();
     }
 
-    /**
-     * 단어들 -> 단어 쪼개는 작업
-     */
+    /** 단어들 -> 단어 쪼개는 작업 */
     public static List<String> splitWords(String sentence) {
         StringTokenizer st = new StringTokenizer(sentence, " ");
         List<String> tempList = new ArrayList<>();
@@ -228,9 +228,7 @@ public class BlogDataProcessing {
         return tempList;
     }
 
-    /**
-     * 단어 전처리 과정 필요없는 문구 특수문자 + 키워드 삭제
-     */
+    /** 단어 전처리 과정 필요없는 문구 특수문자 + 키워드 삭제 */
     public static List<String> preprocessing(List<String> inputWords) {
 
         //TODO : List화 하여 필터링 해야함
@@ -258,7 +256,7 @@ public class BlogDataProcessing {
         return collect;
     }
 
-    //블로그에서 가져온 리스트가 음식점 csv파일에 존재하는지 검사하고 있으면 이를 List로 반환한다
+    /** 블로그에서 가져온 리스트가 음식점 csv파일에 존재하는지 검사하고 있으면 이를 List로 반환한다 */
     public static List<String> csvFileCompareWithBlogInfo(List<String> csvFileList, List<String> blogDataList) {
 
         List<String> blogDataListFiltered = filterUselessData(blogDataList);
@@ -278,9 +276,7 @@ public class BlogDataProcessing {
         return tempList;
     }
 
-    /**
-     * 필요 없는 데이터를 필터링 한다
-     */
+    /** 필요 없는 데이터를 필터링 한다 */
     private static List<String> filterUselessData(List<String> blogDataList) {
 
         //TODO : List화 하여 필터링 해야함 - refactoring 시급
@@ -317,9 +313,7 @@ public class BlogDataProcessing {
         return collect;
     }
 
-    /**
-     * 같은 이름의 음식점이 있는지 확인하는 메소드
-     */
+    /** 같은 이름의 음식점이 있는지 확인하는 메소드 */
     private static boolean checkIsSameRestaurantName(ArrayList<SelectedRestaurant> restaurantses, String com) {
         for (int v = 0; v < restaurantses.size(); v++) {
 
@@ -335,9 +329,7 @@ public class BlogDataProcessing {
         return false;
     }
 
-    /**
-     * CSV파일 안에 있는 단어들과 문장안에 단어들을 비교하여 음식점 이름을 찾아낸다
-     */
+    /** CSV파일 안에 있는 단어들과 문장안에 단어들을 비교하여 음식점 이름을 찾아낸다 */
     public static <T> String existWordInCsv(String sentenceFromBlog, List<T> comparedData) {
         List<String> words = splitWords(sentenceFromBlog);
         for (T resName : comparedData) {
@@ -351,9 +343,7 @@ public class BlogDataProcessing {
         return null;
     }
 
-    /**
-     * 문장에서 음식점 이름을 포함한 문장을 제외한 모든 단어들을 리스트로 만든다
-     */
+    /** 문장에서 음식점 이름을 포함한 문장을 제외한 모든 단어들을 리스트로 만든다 */
     public static List<String> makeKeywordsList(List<String> words, String resName) {
 
         List<String> tempList = new ArrayList<>();
@@ -369,9 +359,7 @@ public class BlogDataProcessing {
         return tempList;
     }
 
-    /**
-     * 지정된 카운트 이상인 음식점만 반환한다
-     */
+    /** 지정된 카운트 이상인 음식점만 반환한다 */
     private static void getListIfCountXUpper(ArrayList<SelectedRestaurant> restaurantses, List<String> last, int i) {
         for (SelectedRestaurant selectedRestaurant : restaurantses) {
             if (selectedRestaurant.getCount() > i) {
@@ -380,9 +368,7 @@ public class BlogDataProcessing {
         }
     }
 
-    /**
-     * 원하는 리스트와 사이즈를 넣으면 랜덤으로 수를 뽑아낸다.
-     */
+    /** 원하는 리스트와 사이즈를 넣으면 랜덤으로 수를 뽑아낸다. */
     private int[] getRandom(List list, int lastSize) {
 
         /** 리스트의 사이즈 개수 */

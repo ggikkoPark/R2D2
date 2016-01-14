@@ -3,7 +3,7 @@ package me.r2d2.restaurant;
 import me.r2d2.user.User;
 import me.r2d2.user.UserRepository;
 import me.r2d2.util.BaseDto;
-import me.r2d2.util.SubwayInformation;
+import me.r2d2.data.SubwayInformation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

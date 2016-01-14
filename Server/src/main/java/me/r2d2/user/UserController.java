@@ -3,6 +3,7 @@ package me.r2d2.user;
 import me.r2d2.commons.ErrorResponse;
 import me.r2d2.util.BaseDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -10,10 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
-
 import java.io.UnsupportedEncodingException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -44,7 +43,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/users", method = POST)
-    public ResponseEntity createUser(@RequestBody @Valid UserDto.Create create, BindingResult result){
+    public ResponseEntity createUser(@RequestBody @Valid UserDto.Create create, BindingResult result) throws Exception {
 
         if(result.hasErrors()){
             ErrorResponse errorResponse = new ErrorResponse();
@@ -65,7 +64,7 @@ public class UserController {
      * @throws UnsupportedEncodingException
      */
     @RequestMapping(value = "/login", method = POST)
-    public ResponseEntity loginUser(@RequestBody @Valid UserDto.Login login, BindingResult result) throws UnsupportedEncodingException {
+    public ResponseEntity loginUser(@RequestBody @Valid UserDto.Login login, BindingResult result) throws Exception {
 
         if(result.hasErrors()){
             ErrorResponse errorResponse = new ErrorResponse();
@@ -74,6 +73,7 @@ public class UserController {
             return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
         }
 
+        /** 유저가 존재하는지 체크 및 패스워드 일치 확인 */
         ResponseEntity responseEntity = service.loginUser(login);
 
         return responseEntity;
@@ -108,7 +108,6 @@ public class UserController {
 
         return new ResponseEntity(logonResponse, HttpStatus.OK);
     }
-    
 
     /**
      * 유저 중복 예외 처리
@@ -134,7 +133,7 @@ public class UserController {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(exception.getEmail()+ " 는 존재하지 않는 이메일 입니다");
         errorResponse.setCode("notfound.username.exception");
-        return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -147,7 +146,7 @@ public class UserController {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage("비밀번호가 틀렸습니다");
         errorResponse.setCode("wrong.password.exception");
-        return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
     }
 
 }

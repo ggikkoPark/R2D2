@@ -54,28 +54,24 @@ public class UserDto {
         @Size(min =5)
         private String password;
 
-    }
+        private String deviceId;
 
+    }
 
     /** user 생성 요청에 대한 응답 */
     @Data
     public static class CreateResponse{
-
         private String userId;
         private String subwayNumber;
         private String code;
         private String message;
-
-
     }
 
     /** user 정보 요청에 대한 응답 */
     @Data
     public static class Response{
-
         private String email;
         private String subwayNumber;
-
     }
 
     /**
@@ -86,10 +82,12 @@ public class UserDto {
 
         @NotBlank
         private String userId;
-
     }
 
-
-
-
+    /** user 생성 요청에 대한 응답 */
+    @Data
+    public static class LoginResponse{
+        private String userId;
+        private String subwayNumber;
+    }
 }
