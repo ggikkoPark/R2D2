@@ -8,6 +8,15 @@
     <artifactId>r2d2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- external repository setting -->
+    <repositories>
+        <repository>
+            <id>in-project</id>
+            <name>r2d2repository</name>
+            <url>file://${project.basedir}/libs</url>
+        </repository>
+    </repositories>
+
     <!-- setting java version -->
     <properties>
         <java.version>1.8</java.version>
@@ -92,6 +101,7 @@
             <artifactId>commons-csv</artifactId>
             <version>1.2</version>
         </dependency>
+
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -99,12 +109,19 @@
         </dependency>
 
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc41</artifactId>
-            <version>4.1</version>
+            <groupId>kr</groupId>
+            <artifactId>kr-cipher</artifactId>
+            <version>1.0.1</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>com.microsoft.sqlserver</groupId>-->
+            <!--<artifactId>sqljdbc41</artifactId>-->
+            <!--<version>4.1</version>-->
+        <!--</dependency>-->
+
         <!--install:install-file -Dfile=libs/kr.cipher-1.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc41 -Dversion=4.1 -Dpackaging=jar-->
+
     </dependencies>
 
     <!-- Plugins-->

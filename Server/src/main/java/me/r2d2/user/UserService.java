@@ -79,7 +79,8 @@ public class UserService {
 
             // TODO : Spring security
             /** 패스워드가 일치하지 않으면 */
-            if(!password.equals(Encryption.seedDecode(existUserPassword))){
+            String receivedPassword = Encryption.encryptOnly(password);
+            if(!receivedPassword.equals(existUserPassword)){
                 throw new PasswordWrongException();
             }
         }
