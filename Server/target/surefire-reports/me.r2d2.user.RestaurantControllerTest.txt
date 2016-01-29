@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: me.r2d2.user.RestaurantControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.531 sec - in me.r2d2.user.RestaurantControllerTest

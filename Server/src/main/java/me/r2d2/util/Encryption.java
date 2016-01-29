@@ -4,8 +4,6 @@ package me.r2d2.util;
  * Created by Park Ji Hong, ggikko.
  */
 
-
-
 import kr.cipher.seed.Seed128Cipher;
 
 import java.io.UnsupportedEncodingException;

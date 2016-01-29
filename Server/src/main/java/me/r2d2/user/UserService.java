@@ -89,16 +89,11 @@ public class UserService {
         if(deviceId!=null) {
             if (!user.getDeviceId().equals(Encryption.seedDecode(deviceId))) {
                 user.setDeviceId(Encryption.seedEncode(deviceId));
-                System.out.printf("ttttttt\n\n");
             }
         }else{
-            System.out.printf("deviceIdNull\n\n");
         }
 
         User newUser = repository.save(user);
-        System.out.printf("ttttttt\n\n");
-        System.out.printf(newUser.getDeviceId());
-        System.out.printf("ttttttt\n\n");
 
         /** 패스워드가 일치하면 */
         return new ResponseEntity(modelMapper.map(newUser, UserDto.LoginResponse.class), HttpStatus.OK);

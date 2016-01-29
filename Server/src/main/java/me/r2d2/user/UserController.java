@@ -2,6 +2,7 @@ package me.r2d2.user;
 
 import me.r2d2.commons.ErrorResponse;
 import me.r2d2.util.BaseDto;
+import me.r2d2.util.UrlDescription;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,7 @@ public class UserController {
      * @param result
      * @return
      */
+    @UrlDescription(name = "회원가입", description = "회원정보를 받아옵니다. 유효성검사 필수입니다")
     @RequestMapping(value = "/users", method = POST)
     public ResponseEntity createUser(@RequestBody @Valid UserDto.Create create, BindingResult result) throws Exception {
 
